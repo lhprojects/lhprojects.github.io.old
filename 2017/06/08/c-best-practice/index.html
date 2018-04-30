@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++11具名返回值最佳实践 | Harry&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="In C++03 Return by Value is Not Elegant在C++里返回一个有名字的局部变量最直接的方式是12345678910// version 1std::vector&amp;lt;int&amp;gt; get_data() &amp;#123;    std::vector&amp;lt;int&amp;gt; local_data;    for(int i = 0; i &amp;lt; 10; ++i) l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11具名返回值最佳实践">
+<meta property="og:url" content="https://lhprojects.github.io/2017/06/08/c-best-practice/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="In C++03 Return by Value is Not Elegant在C++里返回一个有名字的局部变量最直接的方式是12345678910// version 1std::vector&amp;lt;int&amp;gt; get_data() &amp;#123;    std::vector&amp;lt;int&amp;gt; local_data;    for(int i = 0; i &amp;lt; 10; ++i) l">
+<meta property="og:updated_time" content="2017-06-08T11:45:36.391Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++11具名返回值最佳实践">
+<meta name="twitter:description" content="In C++03 Return by Value is Not Elegant在C++里返回一个有名字的局部变量最直接的方式是12345678910// version 1std::vector&amp;lt;int&amp;gt; get_data() &amp;#123;    std::vector&amp;lt;int&amp;gt; local_data;    for(int i = 0; i &amp;lt; 10; ++i) l">
+  
+    <link rel="alternate" href="/atom.xml" title="Harry&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harry&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lhprojects.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c-best-practice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/08/c-best-practice/" class="article-date">
+  <time datetime="2017-06-08T09:32:55.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++11具名返回值最佳实践
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="In-C-03-Return-by-Value-is-Not-Elegant"><a href="#In-C-03-Return-by-Value-is-Not-Elegant" class="headerlink" title="In C++03 Return by Value is Not Elegant"></a>In C++03 Return by Value is Not Elegant</h1><p>在C++里返回一个有名字的局部变量最直接的方式是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 1</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; get_data() &#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; local_data;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) local_data.push_back(i);</div><div class="line">    <span class="keyword">return</span> local_data;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = get_data();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在性能不重要的场景，这么写还没有什么问题。在性能比较重要的场景，那么些就不合适了。原因在于<code>data = get_data()</code>会导致</p>
+<ul>
+<li>local_data拷贝构造给一个临时变量_tmp。</li>
+<li>local_data析构</li>
+<li>_tmp拷贝构造给data<br>伪代码就是</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; _tmp = get_data.local_data;</div><div class="line">    get_data.local_data.~<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = _tmp;</div><div class="line">    _tmp.~<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>整个返回值过程，需要两次对数组的复制。<br>可以看出，_tmp变量的产生完全是因为C++语法限制。这时候编译器会做临时变量消除。于是一个合格的C++编译器生成的代码应该是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = get_data.local_data;</div><div class="line">    get_data.local_data.~<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>整个返回值过程，还是需要一次对数组的复制。下面的讨论都是假设编译器总会做临时变量消除的。(C++11保证了这一点)<br>为了减少这一次数组复制，这时候就需要开动脑筋了，代码可以这么写</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 2</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; get_data(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;local_data) &#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) local_data.push_back(i);</div><div class="line">    <span class="keyword">return</span> local_data;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data;</div><div class="line">    get_data(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就消除了多余数组复制，但是代码变得不Elegant，因为这样代码不是为了性能优化变形的，<em>代码形式和代码表达意图不一致</em>。</p>
+<h1 id="Move-the-Return-Value-in-C-11"><a href="#Move-the-Return-Value-in-C-11" class="headerlink" title="Move the Return Value in C++11"></a>Move the Return Value in C++11</h1><p>C++11引入了右值引用<code>T&amp;&amp;</code>，这里假定读者已经了解右值引用和移动构造函数了。简单来说右值引用是对<em>临时变量的唯一引用</em>，所以当获得一个右值引用，可以窃取引用的内容</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 3</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; get_data() &#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; local_data;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) local_data.push_back(i);</div><div class="line">     <span class="comment">// *********** NOTE HERE *************</span></div><div class="line">     <span class="comment">// std::move(local_data) has type of std::vector&lt;int&gt; &amp;&amp;</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::move(local_data);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = get_data();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>等效的伪代码是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// invoke move constructor</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = (<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;&amp;)get_data.local_data;</div><div class="line">    get_data.local_data.~<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();  </div><div class="line">&#125;</div><div class="line"></div><div class="line">tempalte&lt;...&gt;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">vector</span> &#123;</span></div><div class="line">    T * m_ptr;</div><div class="line">    <span class="comment">// move constructor</span></div><div class="line">    <span class="built_in">vector</span>(<span class="built_in">vector</span> &amp;&amp;r) &#123;</div><div class="line">        ...</div><div class="line">        <span class="keyword">delete</span>[] m_ptr;</div><div class="line">        m_ptr = r.m_ptr;</div><div class="line">        r.m_ptr = <span class="literal">NULL</span>;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// copy constructor</span></div><div class="line">    <span class="built_in">vector</span>(<span class="built_in">vector</span> <span class="keyword">const</span> &amp;r) &#123; ... &#125;</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>使用<code>std::move()</code>没有阻止<code>data</code>的构造，但是通过窃取<code>get_data.local_data</code>的数据所有权，使得构造过程不需要复制整个数组。</p>
+<h1 id="NRVO-in-C-03-and-C-11"><a href="#NRVO-in-C-03-and-C-11" class="headerlink" title="NRVO in C++03 and C++11"></a>NRVO in C++03 and C++11</h1><p>移动返回值的方案对于<code>move</code>起来很快的对象比如<code>string</code>，<code>vector</code>已经足够好了。那么有没有更快的方案，答案是有，那就是具名返回值优化（NRVO）。在C++03时代，没有右值引用，如何使得<code>version 1</code>版本的代码运行比较快呢？编译器会自动将<code>version 1</code>转化成类似<code>version 2</code>的版本。伪代码是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// NRVO 伪代码</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; get_data(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;local_data) &#123;</div><div class="line">    <span class="keyword">new</span>(&amp;local_data) <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) local_data.push_back(i);</div><div class="line">    <span class="keyword">return</span> local_data;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span> data_buffer[<span class="keyword">sizeof</span>(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;)];</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;data = data_buffer;</div><div class="line">    get_data(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看出，内存是在主函数申请的，但是初始化是在子函数进行的，子函数返回后不需要销毁临时变量，主函数可以接着用子函数的局部变量。</p>
+<p>类似的优化手段只对子函数的临时变量（那是另外一个问题了，此处略）和子函数的有名字的局部变量有效。此处正是后者的情况，这就是NRVO(Named Return Value Optimization)。需要注意的是<em>NRVO时可选的，编译器可以选择实现，也可以选择不实现</em></p>
+<h1 id="NRVO-or-Move-Return-Value-in-C-11"><a href="#NRVO-or-Move-Return-Value-in-C-11" class="headerlink" title="NRVO or Move Return Value in C++11?"></a>NRVO or Move Return Value in C++11?</h1><p>需要指出的是对于<code>version 3</code>由于，<code>std::move(local_data)</code>不是具名局部变量，也就丧失了，NRVO的机会。</p>
+<p>所以我们到底是应该写<code>return local_data</code>还是<code>return std::move(local_data)</code>，或者说应该写<code>version 1</code>还是<code>version 3</code>？对于后者，一定会发生一次移动构造，虽然代价比较小，但是相比NRVO仍然是不够优化的。对于前者，如果发生NRVO那么效率会很好，如果没有发生，效率会不会很差？C++11规定了，对于<code>return local_data</code>，如果编译器没有实现NRVO，那么必须将<code>return local_data</code>视作<code>return std::move(local_data)</code>。所以在C++11里，前者总是优于后者的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>说的好多，结论是：对于返回具名局部变量的情况，像C++03一样返回值就好的。此时</p>
+<ul>
+<li>如果NRVO发生，那么效率最优化</li>
+<li>如果NRVO没有发生，如果对象有移动构造函数，那么就使用移动构造函数构造上层函数局部对象</li>
+<li>如果NRVO和移动构造都没有发生，如果对象有复制构造函数，那么就使用复制构造函数构造上层函数局部对象</li>
+<li>如果NRVO，移动构造和复制构造都没有发生，编译错误</li>
+</ul>
+<p>天下还是有免费的午餐的，一行C++03代码不用改，只要更新C++编译器和标准库到C++11，就可以自动获得性能提升。</p>
+<p>对于<code>version 2</code>是不是就可以放在历史的垃圾箱里呢？其实并不是，需要分多个函数来填充同一个动态数组时，<code>version 2</code>还是比<code>version 1</code>更加有效和自然，代码举例如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data;</div><div class="line">    push_data_1(data);</div><div class="line">    push_data_2(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/08/c-best-practice/" data-id="cjgm7stux0009s0syfvq7cpge" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/08/pass-by/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++11传递参数最佳实践
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/08/why-xor-need/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">为什么需要xor算符？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/30/CppAbs/">C++ abs()</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/01/Entropy/">视界问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/Lottery/">博彩</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/11/Integers-In-C/">Integers In C++</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Install-Root-on-Windows/">Install Root on Windows</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Harry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

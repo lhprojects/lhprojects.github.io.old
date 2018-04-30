@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Harry&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Harry&#39;s Blog">
+<meta property="og:url" content="https://lhprojects.github.io/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Harry&#39;s Blog">
+  
+    <link rel="alternate" href="/atom.xml" title="Harry&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harry&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lhprojects.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-CppAbs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/30/CppAbs/" class="article-date">
+  <time datetime="2018-04-30T11:55:56.000Z" itemprop="datePublished">2018-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/30/CppAbs/">C++ abs()</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="std-abs"><a href="#std-abs" class="headerlink" title="std::abs"></a>std::abs</h1><p>c++中<code>std::abs</code>的使用十分方便，函数签名包括<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int abs(int);</div><div class="line">long abs(long);</div><div class="line">long long abs(long long);</div><div class="line">double abs(double);</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>可是说剩下了很多选择函数名字的麻烦。如果再模板中使用这些函数也没有什么问题。但是这些函数都在<code>std</code>空间中。再全局空间中只有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int abs(int)</div><div class="line">long labs(long);</div><div class="line">long llabs(long);</div><div class="line">double fabs(double);</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>所以，会又如下的坑<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">abs(3.1) // results in 3!</div></pre></td></tr></table></figure></p>
+<p>总之要么老老实实加前缀，要么加名字空间。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2018/04/30/CppAbs/" data-id="cjgm7stue0000s0syd70oqdoi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Entropy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/01/Entropy/" class="article-date">
+  <time datetime="2017-12-31T20:49:39.000Z" itemprop="datePublished">2018-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/01/Entropy/">视界问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h2 id="粒子视界"><a href="#粒子视界" class="headerlink" title="粒子视界"></a>粒子视界</h2><p>我们有一个问题，这个问题就是我们当前可以观测到的宇宙有多大？可以想象宇宙最初的哪一个，某一个位置A发出一个光速运行的粒子，如果这个粒子现在正好到达我们地球，那么我们现在正好看到A地的情况，只不过是宇宙最初那一个刻的。此时，A地距离我们的距离，这就是我们能够看到的宇宙的最远处。这个距离又称为粒子视界。这个距离是<br>$$<br>d_p= \int_0^{t_0} \frac{a(t_0)}{a(t)} c dt<br>$$<br>其中$d_p$是粒子视界，$t_0$是我们现在的时间，也就是138亿年，$c$是光速。$a(t_0)$是现在宇宙的大小，$a(t)$是$t$时刻的宇宙的大小。这个公式其实是很平庸的，你知道对光从初始时刻到现在飞过的距离积分就可以了，只是你要知道光在$t$时刻飞过的距离$c dt$，现在由于宇宙膨胀变为了$\frac{a(t_0)}{a(t)} c dt$。</p>
+<p>根据我们现在我们宇宙的膨胀模型，大约$70%$的暗能量，$30%$的物质控制我们的宇宙的膨胀。据此我们可以估计过去每一刻宇宙的大小。然后把$a(t)$带入上式（技术上写为对$d a$的积分更加方便， 但是读者可以不理会这个技术细节）就可以得到现在的视界大小是<br>$$<br>d_p=469亿光年<br>$$<br>这个数值要比现在的宇宙的年龄乘以光速要大，这并不奇怪，虽然光飞行了138亿年，但是宇宙在膨胀，过去飞过的一光年，演化大小到现在，要大于一光年。</p>
+<p>这是我们现在能够观察到宇宙的最远处，那么我们实际上能够观察到这么远的距离吗。答案是是。之所以说是，我们我们现在观察到的最遥远的光子，宇宙微波背景辐射，来自于宇宙年龄为38万年时候的热辐射。38万年，相比于宇宙138亿年的历史太短暂了，可以说这些光子从某个点经过138亿年飞行来到我们地球，而这个点现在距离我们469光年。</p>
+<h2 id="事件视界"><a href="#事件视界" class="headerlink" title="事件视界"></a>事件视界</h2><p>我们假设在遥远的远方此刻发生了一个事件，那么我们能在未来某一个时刻观察到这个事件吗。如果这个事件是一个发光的过程，那么我们问题就是，发出的光信号能达到地球吗？如果不考虑宇宙的膨胀，那么答案当然是是。只要有足够的时间，那么光信号迟早能够传播到地球。但是宇宙是不停膨胀的，宇宙膨胀的足够快，那么即使到了永远，我们也可能观察不到这个事件。到了永远，光信号能够传达到A，A点到事件发生的原初点距离是<br>$$<br>d<em>e= \int</em>{t_0}^{\infty} \frac{a(t_0)}{a(t)} c dt<br>$$<br>你需要注意到的是，光在t（$&gt;t_0$）时刻飞过的距离$c dt$是在未来膨胀后的宇宙飞行的，在现在其距离只有$\frac{a(t_0)}{a(t)} c dt$。如果现在地球距离这个事件距离小于$d_e$，那么这个事件迟早会被地球上的我们在未来某一刻观察到。反之，如果现在地球距离这个事件距离大于$d_e$，那么这个事件永远不能被地球上的我们的某一刻观察到。</p>
+<p>按照现在的宇宙模型计算<br>$$<br>d_e=160亿光年<br>$$<br>也就是说，如果此刻发生一个事件，只有这个事件的距离小于160亿光年，我们在才能在未来某个时刻观察到这个事件。</p>
+<h2 id="视界的和"><a href="#视界的和" class="headerlink" title="视界的和"></a>视界的和</h2><p>那么最遥远的未来，我能够观察到最远的事件，距离我们能有多远呢？为了能够观察到最远的事件，这个事件必须是宇宙一开始就发生的，这个距离是</p>
+<p>$$<br>d = \int_{0}^{\infty} \frac{a(t_0)}{a(t)} c dt<br>$$</p>
+<p>这个距离的大小正是<br>$$<br>d = 629 亿光年<br>$$<br>也就是说在这个距离之外的位置上发生的事件，无论什么时间发生的，都不可能影响到我们，我们也不可能观察到事件的发生，即使这个事件是宇宙一开始时发生的。</p>
+<p>这是悲剧的，这表示我们能够观察到宇宙大小是有限的。按照现在的观测，我们的宇宙是无限大的，所以从概率上说我们人类不应该是宇宙的孤儿。但是人类能够观察到宇宙大小是有限，地球可能是我们视界之内唯一有生命的星球。如果因为视界问题，我们不能观察到外星生命，同样外星生命也不能意识到我们的存在。</p>
+<p>“人类是孤单的。”<br>“如果存在外星人类呢？”<br>“外星人类也是孤单的！”</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2018/01/01/Entropy/" data-id="cjgm7stuk0002s0sywxq1lqjt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Lottery" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/09/Lottery/" class="article-date">
+  <time datetime="2017-11-09T05:25:09.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/Lottery/">博彩</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>我们研究一下博彩问题。</p>
+<p>假设有两支队伍比赛，比如说A队和B队，投注者可以投注其中一只队伍。无论投注者所投的队伍输赢，投注者都要首先付出一定的本金。如果投注者投注的队伍赢了，投注者这可以获取一定的回报；如果投注者投注的队伍输了，那么投注者没有回报。每投入一元的回报就是所谓的赔率。一般两队的赔率并不相同，赢面比较大的队伍赔率比较低，而且赢面比较小的队伍赔率比较低。所谓低风险低收入，高风险高收入。赔率都是大于1的，否则回报不抵成本。</p>
+<h1 id="博彩公司的策略"><a href="#博彩公司的策略" class="headerlink" title="博彩公司的策略"></a>博彩公司的策略</h1><p>对于博彩公司而言，首要的是增加收益，降低风险。</p>
+<h2 id="最小化风险"><a href="#最小化风险" class="headerlink" title="最小化风险"></a>最小化风险</h2><p>在我们的研究里，假设降低风险是首要的。假设买A队赢的资金为 $N_A$ ，买B队赢的资金为 $N_B$ 。那么如果A队赢了，那么博彩公司正收益的条件为<br>$$<br>N_A O_A &lt;= (N_A + N_B)<br>$$<br>或者说<br>$$<br>N_A / (N_A + N_B)  &lt;=  1/ O_A<br>$$<br>那么如果B队赢了，那么博彩公司正收益的条件为<br>$$<br>N_B O_B &lt;= (N_A + N_B)<br>$$<br>或者说<br>$$<br>1 - 1/ O_B  &lt;=  N_A / (N_A + N_B)<br>$$<br>联合两个公式可得<br>$$<br>1 - 1/ O_B  &lt;=  N_A / (N_A + N_B) &lt;= 1 / O_A<br>$$<br>如果以降低风险为首要条件，那么博彩公司首先应该估计$N_A / (N_A + N_B)$，然后定下赔率$O_B$和$O_A$。如果投注者实际的$N_A / (N_A + N_B)$与估计$N_A / (N_A + N_B)$的比较接近，都在$[1 - 1/ O_B, 1 / O_A]$区间内，那么博彩公司实际上是稳赚不赔的。如果$N_A / (N_A + N_B)$不在$[1 - 1/ O_B, 1 / O_A]$区间内，那么博彩公司要么大赚，要么大赔，这取决于到底那支队伍赢。博彩公司可以根据投注情况实时更改赔率，即由实时的$N_A / (N_A + N_B)$来调整$O_B$和$O_A$。</p>
+<p>对于博彩公司，赔率不应设置的过高，否则区间过小，增大了出现风险的可能性；同时赔率不应设置的过低，否则对于投注者来说投注就不再有吸引力了。</p>
+<p>我们从上式可以看出$1 - 1/ O_B &lt;= 1 / O_A$，即$1/O_A + 1/O_B&gt;1$。实际的博彩设置都是满足这个关系式的。</p>
+<p>这里可以看到，赔率是通过投注者的投注者行为确定的。那么投注者的策略又是什么？</p>
+<h1 id="投注者的策略"><a href="#投注者的策略" class="headerlink" title="投注者的策略"></a>投注者的策略</h1><p>我们知道那只队伍输赢有一定的或然性。假设队伍A赢得的概率是$P_A$，队伍B赢得的概率是$P_B$。那么投注A队伍的收益期望为$P_A O_A - 1$。如果$P_A &gt; 1 / O_A$，那么就可以投注A队伍。投注B队伍的收益期望为$(1 - P_A) O_B - 1$。如果$P_A &lt; 1 - 1 /  O_B$，那么就可以投注B队伍。或者说如果$P_A$不在区间$[1 - 1/ O_B, 1 / O_A]$，那么就可以通过投注某一支队伍而获得正的收益期望。什么时候会出现这种投注者的机遇呢？</p>
+<h2 id="最大化收益"><a href="#最大化收益" class="headerlink" title="最大化收益"></a>最大化收益</h2><p>我们假设博彩公司是最小化风险的，而投注者是最大化收益的。我们知道$N_A / (N_A + N_B)$在区间$[1 - 1/ O_B, 1 / O_A]$里，同时要求$P_A$不在区间$[1 - 1/ O_B, 1 / O_A]$里。这要求$N_A / (N_A + N_B)$与$P_A$差别足够大，并且区间$[1 - 1/ O_B, 1 / O_A]$足够小。</p>
+<p>区间$[1 - 1/ O_B, 1 / O_A]$足够小，意味着博彩公司克制的抽成，这很容易理解，一般这个数值在10%左右。</p>
+<p>为了简单起见，我们假定$[1 - 1/ O_B, 1 / O_A]$足够小，那么 $1 - 1/ O_B = 1 / O_A = N_A / (N_A + N_B)$。我们知道博彩公司首先会设置一个初始赔率，然后根据投注情况设置更改赔率，这叫做市场赔率。那么$P_A$与$N_A / (N_A + N_B)$是什么关系呢？如果$P_A&gt;N_A / (N_A + N_B)$那么投注A队是有有收益的，所以$N_A$就会增加，直到$N_A / (N_A + N_B)=P_A$。所以赔率最终是有市场平均认为的A队胜率决定的。</p>
+<p>在博彩公司有抽成的情况下基本结论基本不变。如果市场平均判断水平很低，$N_A/(N_A+N_B)$与真实胜率$P_A$差别很大，区间$[1 - 1/ O_B, 1 / O_A]$覆盖了$N_A/(N_A+N_B)$，但是不覆盖$P_A$。那么投注者就出现了正收益的机会。不妨我们假设$P_A &gt; N_A/(N_A+N_B)$，虽然$1/O_A$会比$N_A/(N_A+N_B)$略大（由博彩公司决定），但是我们再假定$P_A &gt; 1 / O_A$，此时投注A队伍是有正收益的。如果市场平均判断水平很高，$N_A/(N_A+N_B)$与真实胜率$P_A$差别很小，区间$[1 - 1/ O_B, 1 / O_A]$覆盖了$N_A/(N_A+N_B)$，同时覆盖了$P_A$。那么无论投注哪支队伍，收益期望的都是负的，只有博彩公司收益期望是正的，而且是没有风险的。</p>
+<h1 id="博彩公司的策略2"><a href="#博彩公司的策略2" class="headerlink" title="博彩公司的策略2"></a>博彩公司的策略2</h1><p>我们来计算一下博彩公司的收益期望<br>$$<br>N_A + N_B - PA<br>$$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/11/09/Lottery/" data-id="cjgm7stuo0005s0sy2dx35ato" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Integers-In-C" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/11/Integers-In-C/" class="article-date">
+  <time datetime="2017-07-11T06:05:53.000Z" itemprop="datePublished">2017-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/11/Integers-In-C/">Integers In C++</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C++整数丰富多彩（繁杂无比），整数系统本来是初学阶段首先应该学习的，但是温故而知新（不踩旧坑就不错了），所以来复习一下C++中的整数系统。</p>
+<h1 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h1><p>C++中整数包括（他们最短的名字）分别是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>, <span class="keyword">unsigned</span>,</div><div class="line"><span class="keyword">short</span>, <span class="keyword">unsigned</span> <span class="keyword">short</span>,</div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span>, <span class="keyword">signed</span> <span class="keyword">char</span>,</div><div class="line"><span class="keyword">char</span>, <span class="keyword">char16_t</span>, <span class="keyword">char32_t</span>,</div><div class="line"><span class="keyword">long</span>, <span class="keyword">unsigned</span> <span class="keyword">long</span>,</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">unsigned</span> <span class="keyword">long</span></div></pre></td></tr></table></figure></p>
+<p>C++整数系统的复杂性源于设计之初就语焉不详，为了在不同平台上达到最佳性能，没有规定每一种整数的长度。以现在的眼光看来当然是得不偿失，可移植的代码本来就不好写，可移植的性能更是难上加难。所以后来设计的语言中每种整数类型都是固定长度。当然固定整数长度也有缺陷，比如几乎所有语言中都有一种叫做<code>int</code>的类型，他是典型的整数长度，应该足够长，性能足够好，那么现在就有一个问题，应该将<code>int</code>定位32位还是64位？或许根据平台浮动的定义才是最好的。</p>
+<h2 id="char"><a href="#char" class="headerlink" title="char"></a><code>char</code></h2><p>C语言之初，<code>char</code>没有确定是有符号的还是无符号的（坑爹）。C++后来补了<code>signed char</code>和<code>unsigned char</code>两种类型，他们的符号性是确定。注意他们的是跟<code>char</code>不同的类型。<br>（如果曾经在标准中一件事情是没有具体规范的，那么后来标准一般不会补充具体规范，因为大家的代码难免会用到某一平台的具体规范，所以C++委员会再也不会规定<code>char</code>的符号性了）。</p>
+<p>后来C++又添加了两种整数类型<code>char16_t</code>和<code>char32_t</code>，他们是无符号的整数。（委员会这回总算学聪明了。）</p>
+<h2 id="size-t"><a href="#size-t" class="headerlink" title="size_t"></a>size_t</h2><p>C++在std名字空间有无符号整数类型<code>size_t</code>。（为了兼容C，所以在全局名字空间肯定也有<code>size_t</code>）。<code>size_t</code>不是基础整数类型。<code>size_t</code>用于表示储存大小，例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sizeof</span>(some_type) -&gt; <span class="keyword">size_t</span></div><div class="line"><span class="keyword">alignof</span>(some_type) -&gt; <span class="keyword">size_t</span></div><div class="line">offsetof(some_type, member_data) -&gt; <span class="keyword">size_t</span></div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line"><span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line"><span class="built_in">malloc</span>(n);</div><div class="line"><span class="built_in">memcpy</span>(dst, src, n);</div></pre></td></tr></table></figure></p>
+<p><code>size_t</code>用于循环和数组下标，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; <span class="built_in">std</span>::size(arr); ++i) &#123;</div><div class="line">    arr[i] = <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>尽管标准没有规定，但是各种标准库容器通常也使用<code>size_t</code>表示各种大小<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;...&gt;::size_type <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;...&gt;::size();</div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;...&gt;::size_type == <span class="keyword">size_t</span></div></pre></td></tr></table></figure></p>
+<p>在实际使用中完全可以把他们当作同一类型，这样就简化了程序写法。（不过两种是不同的类型，那么首先通常不会导致任何错误，其次算这个标准库的作者很奇葩）</p>
+<p><code>size_t</code>具体对应那一基本整数类型并不知道，所以你就不知道<code>size_t</code>的长度，最大值，最小值（其实并不！虽然没有规定，但是它一定和指针一样长）,但是生活还要继续，对基本整数的服务都要迁移过来。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//C版本</span></div><div class="line">&lt;limits.h&gt;</div><div class="line">SIZE_MAX <span class="comment">//最大整数值</span></div><div class="line"></div><div class="line"><span class="comment">//泛型版本</span></div><div class="line">&lt;climits&gt;</div><div class="line"><span class="built_in">std</span>::limit_traits&lt;<span class="keyword">size_t</span>&gt;::...</div></pre></td></tr></table></figure>
+<h1 id="整数提升"><a href="#整数提升" class="headerlink" title="整数提升"></a>整数提升</h1><p>这里我们假设<code>sizeof(char)==1 &amp;&amp; sizeof(short)==2 &amp;&amp; sizeof(int)&gt;=4</code>。首先<code>signed char</code>，<code>signed short</code>，<code>unsigned char</code>，<code>unsigned short</code>，<code>char</code>, <code>char16_t</code>会被提升为<code>int</code>。如果<code>int</code>是4 bytes，那么<code>char32_t</code>会被提升为<code>unsigned</code>；如果<code>int</code>是8 bytes那么<code>char32_t</code>会被提升为<code>int</code>。如果要对char32_t进行比较</p>
+<h1 id="有符号和无符号"><a href="#有符号和无符号" class="headerlink" title="有符号和无符号"></a>有符号和无符号</h1><p>有符号和无符号有什么不同？粗粗一想有符号和无符号有天壤之别，但是两者实际相似之处远超过直觉。首先我们知道有符号的负数是按照补码储存在内存中的，即<code>-1 -&gt; 2^n - 1  -&gt; 0xFFFFFFFE</code>。我们看看负号作用在有符号和无符号整数上的结果<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">-1u</span> -&gt; [<span class="number">-1</span>] -&gt; [<span class="number">2</span>^n - <span class="number">1</span>] -&gt; <span class="number">0xFFFFFFFE</span></div><div class="line"><span class="number">-1</span>  -&gt;  <span class="number">2</span>^n - <span class="number">1</span> -&gt; <span class="number">0xFFFFFFFE</span></div></pre></td></tr></table></figure></p>
+<p>我们知道<code>1u</code>和<code>1</code>的内存布局是一样的，结果的二进制表示也是一样的。有符号和无符号的<code>负号</code>对二进制做了相同的操作。我们再看看有符号的和无符号的加法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> + <span class="number">-2</span> = <span class="number">-1</span> = <span class="number">2</span>^n - <span class="number">1</span> = <span class="number">0xFFFFFFFE</span></div><div class="line"><span class="number">1u</span> + (<span class="number">-2u</span>) = [<span class="number">1</span> + (<span class="number">2</span>^n - <span class="number">2</span>)] = [<span class="number">2</span>^n - <span class="number">1</span>] = <span class="number">2</span>^n <span class="number">-1</span> = <span class="number">0xFFFFFFFE</span></div></pre></td></tr></table></figure></p>
+<p>我们知道<code>-2</code>和<code>(-2u)</code>的内存布局是一样的，结果的二进制表示也是一样的。有符号和无符号的<code>加法</code>对二进制做了相同的操作。实际上对于减法和乘法这个结论也成立。这个结果很重要，这表示如果把在做四则运算的时候，我们把有符号的负数“错误”的转换成无符号的整数，结果还是符合直觉的，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2U</span> + (<span class="keyword">unsigned</span>)(<span class="number">-1</span>) = <span class="number">2u</span> + <span class="number">-1u</span> = <span class="number">2</span> - <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<h1 id="算数运算"><a href="#算数运算" class="headerlink" title="算数运算"></a>算数运算</h1><ul>
+<li>如果其中一个操作子为<code>long double</code>，那么两个操作子都转换为<code>long double</code>。<code>(unsigned) long long</code>转换为<code>long double</code>的时候可能会丢失精度。</li>
+<li>否则，如果其中一个操作子为<code>double</code>，那么两个操作子都转换为<code>double</code>。unsigned or signed 8 bytes integer转换为<code>double</code>的时候可能会丢失精度。</li>
+<li><p>否则，如果其中一个操作子为<code>float</code>，那么两个操作子都转换为<code>float</code>。unsigned or signed 4 or 8 bytes integer转换为<code>float</code>的时候可能会丢失精度。</p>
+</li>
+<li><p>对于两个整数的情形</p>
+<ul>
+<li>如果两个操作子的符号相同，那么低等级的应当转换为高等级的</li>
+<li>否则，如果无符号的操作子的等级不低于有符号的操作子，那么有符号的整数应当转换为无符号的。</li>
+<li>否则，（有符号的操作子的等级高于无符号的操作子）如果有符号的长度比无符号的要长，那么无符号的应当转换为有符号的。</li>
+<li>否则，（有符号的操作子的等级高于无符号的操作子）两者都转换成有符号的操作子的无符号版本。</li>
+</ul>
+</li>
+</ul>
+<p>对于整数的第二种情况：<br>如果有符号的整数为整数，那么结果显然是符合直觉的。如果有符号的整数为负数，那么负数就会带符号拓展位，然后和另外一个操作子运算，结果通常也是符合只直觉的。例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">1u</span> - (<span class="keyword">signed</span> <span class="keyword">char</span>)(<span class="number">-1</span>) <span class="comment">// = 1u - (signed)1 = [1 - (2^n - 1)] = [2 - 2^n] = 2</span></div></pre></td></tr></table></figure></p>
+<p>对于整数的第四种情况类似。</p>
+<p>另外对于所有情况，都没有实现定义的情况出现，于是只要每种整数的长度确定，那么结果就和编译选项无关。</p>
+<h1 id="固定长度整数"><a href="#固定长度整数" class="headerlink" title="固定长度整数"></a>固定长度整数</h1><p>C++的整数系统都是围绕基本整数类型转的，那么如果在程序中混合使用<code>int32_t</code>, <code>int64_t</code>, <code>uint32_t</code>, <code>uint64_t</code>, <code>size_t</code>, <code>int</code>结果会怎样？对于加减乘法，一般情况都不会出现问题，结果都会符合直觉，不过还是要特别注意，结果可能是有符号类型也可能是无符号类型，但是如果将结果赋值给一个确定的类型变量，那么一切都会尘埃落定得到你想要的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// size_t == uint32_t</span></div><div class="line"><span class="keyword">int64_t</span> offset = <span class="number">-1</span>;</div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line">n = n - offset; <span class="comment">// = uint32_t((int64_t)n - offset) = 2</span></div><div class="line"></div><div class="line"><span class="comment">// size_t == uint64_t</span></div><div class="line"><span class="keyword">int64_t</span> offset = <span class="number">-1</span>;</div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line">n = n - offset; <span class="comment">// = n - (uint64_t)offset = 2</span></div></pre></td></tr></table></figure>
+<p>但是对于除法就要特别小心，因为将负数转换为负数，通常会带来问题。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// size_t == uint32_t</span></div><div class="line"><span class="keyword">int64_t</span> by = <span class="number">-1</span>;</div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line">n = n / by; <span class="comment">// = 4294967295</span></div><div class="line"></div><div class="line"><span class="comment">// size_t == uint64_t</span></div><div class="line"><span class="keyword">int64_t</span> by = <span class="number">-1</span>;</div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line">n = n / by; <span class="comment">// = 0</span></div></pre></td></tr></table></figure></p>
+<p>实践上首先应该将操作子转换为相同符号的整型。</p>
+<h1 id="整数字面值"><a href="#整数字面值" class="headerlink" title="整数字面值"></a>整数字面值</h1><p>整数字面值都是非负数。字面值依然可能（默认是）是有符号的类型。</p>
+<h2 id="十进制字面值"><a href="#十进制字面值" class="headerlink" title="十进制字面值"></a>十进制字面值</h2><p>如果没有指定符号性，那么会从<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> -&gt; <span class="keyword">long</span> -&gt; <span class="keyword">long</span> <span class="keyword">long</span></div></pre></td></tr></table></figure></p>
+<p>中选择一个。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> <span class="comment">// int</span></div><div class="line"><span class="number">1500000000000</span> <span class="comment">// long or long long (first 8bytes signed integer)</span></div><div class="line"><span class="number">15000000000000000000</span> <span class="comment">// error (or warning) cann't fit in 8bytes signed integer</span></div><div class="line">                     <span class="comment">// note: in C99, if the integer can't fit in long</span></div><div class="line">                     <span class="comment">// the compiler will try unsigned long</span></div><div class="line">                     <span class="comment">// VC++ and g++ behave similarly as C99 sometimes</span></div></pre></td></tr></table></figure></p>
+<p>如果指定为无符号的整数，那么只能从无符号整数中选择一个。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> -&gt; <span class="keyword">unsigned</span> <span class="keyword">long</span> -&gt; <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span></div></pre></td></tr></table></figure></p>
+<p>可以指定最小长度。例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">1L</span> <span class="comment">// long</span></div><div class="line"><span class="number">1500000000000L</span> <span class="comment">// long or long long (first 8bytes signed integer)</span></div></pre></td></tr></table></figure></p>
+<p>一般请使用大写L，以防止某些不好的字体无法区分<code>1</code>和<code>l</code>。</p>
+<h2 id="二进制，八进制和十六进制"><a href="#二进制，八进制和十六进制" class="headerlink" title="二进制，八进制和十六进制"></a>二进制，八进制和十六进制</h2><p>与十进制的情形相同，只是在没有指明符号性的情况下，会首先尝试有符号，然后尝试无符号的，实在不行就增加长度。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0xf</span> <span class="comment">// int</span></div><div class="line"><span class="number">0xffffffff</span> <span class="comment">// unsigned</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/07/11/Integers-In-C/" data-id="cjgm7stum0004s0syfwhf3b40" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Install-Root-on-Windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/29/Install-Root-on-Windows/" class="article-date">
+  <time datetime="2017-06-29T11:58:26.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/29/Install-Root-on-Windows/">Install Root on Windows</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
+<li>下载root5.3.4-36 没有测试更高版本</li>
+<li>安装python2.7 更高版本会导致问题</li>
+<li>安装cmake3.2.2 更高版本会导致问题</li>
+<li>安装Visual Studio 12 2013 更高版本会导致问题</li>
+</ul>
+<h1 id="生成Visual-Studio-sln"><a href="#生成Visual-Studio-sln" class="headerlink" title="生成Visual Studio .sln"></a>生成Visual Studio .sln</h1><p>cmake -G “Visual Studio 12 2013” path/to/root/source -Droofit=ON<br>-Droofit=ON means the libRooFit will be built</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ul>
+<li>第一次cmake会失败，再试一次就好了</li>
+<li>gunichartables.h 需要保存为utf8-with-signature</li>
+</ul>
+<h1 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h1><p>编译PACAGE项目即可</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/29/Install-Root-on-Windows/" data-id="cjgm7stum0003s0syg7o2fwzn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-constexpr" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/09/constexpr/" class="article-date">
+  <time datetime="2017-06-08T17:29:53.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/09/constexpr/">C++11 constexpr</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="C-03中的常量表达式"><a href="#C-03中的常量表达式" class="headerlink" title="C++03中的常量表达式"></a>C++03中的常量表达式</h1><p>C++03中就已经有常量表达式了，比如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// len is constant expression</span></div><div class="line"><span class="keyword">int</span> <span class="keyword">const</span> len = <span class="number">3</span>;</div><div class="line"><span class="keyword">int</span> arr[len];</div></pre></td></tr></table></figure></p>
+<p>C++03中<code>const</code>关键字扮演着多种角色<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a is varible</span></div><div class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</div><div class="line"><span class="comment">// b is a constant variable</span></div><div class="line"><span class="keyword">int</span> <span class="keyword">const</span> b = a;</div><div class="line"><span class="keyword">int</span> arr1[b]; <span class="comment">// compile error</span></div><div class="line">             <span class="comment">// b is not constant expression</span></div><div class="line"><span class="comment">// b is a constsnt expression</span></div><div class="line"><span class="keyword">int</span> <span class="keyword">const</span> c = <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> arr2[c]; <span class="comment">// ok</span></div></pre></td></tr></table></figure></p>
+<p>可见<code>const</code>关键字可以定义不可更改变量，也可以定义常量表达式，当对不可更改变量的定义满足一定条件时候，不可更改变量自动提升为常量表达式。</p>
+<p>常量表达式的优势</p>
+<ul>
+<li>常量表达式在编译期求值<ul>
+<li>常量表达式可以用于静态长度数组的长度</li>
+<li>常量表达式可以用于模板参数</li>
+<li>常量表达式可以用于<code>switch</code>的<code>case</code>label</li>
+</ul>
+</li>
+<li>常量表达式是编译期概念，所以可以定义在头文件</li>
+<li>常量表达式没有初始化顺序问题</li>
+</ul>
+<h2 id="lackage"><a href="#lackage" class="headerlink" title="lackage"></a>lackage</h2><p>C++03中，不可变变量默认具有static的链接性，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// str.h</span></div><div class="line"><span class="built_in">string</span> <span class="keyword">const</span> str;</div><div class="line"></div><div class="line"><span class="comment">// non-const-str.h</span></div><div class="line"><span class="built_in">string</span> non_const_str;</div><div class="line"></div><div class="line"><span class="comment">// src1.cpp</span></div><div class="line"><span class="meta">#inlcude <span class="meta-string">"str.h"</span> <span class="comment">// ok</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"non-const-str.h"</span> <span class="comment">// 链接性 error</span></span></div><div class="line"></div><div class="line"><span class="comment">// src2.cpp</span></div><div class="line"><span class="meta">#inlcude <span class="meta-string">"str.h"</span>  <span class="comment">// ok</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"non-const-str.h"</span> <span class="comment">// 链接性 error</span></span></div></pre></td></tr></table></figure></p>
+<p>虽然让<code>len</code>具有static的链接性解决了<code>len</code>在不同翻译单元重复定义的问题，是一种简便的解决方案。但是这导致每个翻译单元都一份<code>len</code>的拷贝，同时也破坏了<code>const</code>和<code>static</code>的正交性，实则不是一种优雅的解决方案。</p>
+<h1 id="C-11中的常量表达式"><a href="#C-11中的常量表达式" class="headerlink" title="C++11中的常量表达式"></a>C++11中的常量表达式</h1><h2 id="constexpr-varible"><a href="#constexpr-varible" class="headerlink" title="constexpr varible"></a>constexpr varible</h2><p>C++11中可以使用<code>constexpr</code>定义<code>constexpr variable</code>,<code>constexpr variable</code>是一种常量表达式<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> a = <span class="number">1</span>; <span class="comment">// a is constant expression</span></div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> b = <span class="built_in">strlen</span>(<span class="string">"abc"</span>); <span class="comment">// compile error</span></div><div class="line">                                 <span class="comment">// strlen("abc") is not constant expression</span></div></pre></td></tr></table></figure></p>
+<p>可见<code>constexpr</code>相比<code>const</code>可以保证被定义的对象一定是常量表达式。<strong>如果意图定义常量表达式，那么就使用<code>constexpr</code></strong> 这样可以避免编译错误传播。如果意图定义不可更改变量，那么就使用<code>const</code>，可以不管被定义的对象被是否提升为常量表达式。</p>
+<p><code>const</code>只支持定义整数，枚举和指针类型的常量表达式。<code>constexpr</code>除了可以定义build-in类型的常量表达式，还可以定义任何literal-type类型的常量表达式。</p>
+<h3 id="constexpr-variable-储存期和连接性"><a href="#constexpr-variable-储存期和连接性" class="headerlink" title="constexpr variable 储存期和连接性"></a>constexpr variable 储存期和连接性</h3><h4 id="名字空间作用域的常量表达式"><a href="#名字空间作用域的常量表达式" class="headerlink" title="名字空间作用域的常量表达式"></a>名字空间作用域的常量表达式</h4><p>我们知道名字空间作用域的常量表达式都是static链接性，如果不对常量表达式取地址，那么连接性其实没有什么影响。但是一旦对常量表达式取地址，那么这个翻译单元，就必须为常量表达式分配内存空间。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> arr[x]; <span class="comment">// same as int arr[1]</span></div><div class="line">    <span class="keyword">int</span> <span class="keyword">const</span> *p = x; <span class="comment">// we have to assign memory place for x now</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这是一个轻微的缺点。</p>
+<h4 id="类作用域的常量表达式"><a href="#类作用域的常量表达式" class="headerlink" title="类作用域的常量表达式"></a>类作用域的常量表达式</h4><p>我们知道类作用域的常量表达式都是external链接性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Class.h</span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Class</span> &#123;</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> N = <span class="number">1</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Class.cpp</span></div><div class="line"><span class="comment">// you can't pass linking without this definiton with g++</span></div><div class="line"><span class="comment">// But it's ok with Visual Studio, Visual Studio did some magic for us</span></div><div class="line"><span class="comment">// and this will be allowed in C++17, but it's not part of this article</span></div><div class="line">cosntexpr Class::N;</div></pre></td></tr></table></figure>
+<p>Class::N既可以当做编译期常量使用，又有external链接性，可以说是名字空间作用域常量表达式的补充。注意这里initializer和变量定义是分开的，破坏了在变量定义位置初始化的惯例，但是语言设计只能如此。</p>
+<h2 id="constexpr-function"><a href="#constexpr-function" class="headerlink" title="constexpr function"></a>constexpr function</h2><p>还可以使用<code>constexpr</code>定义常量函数，如果不适用常量函数，那么可能代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem1 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer1[<span class="number">4</span>+<span class="number">2</span>*NElem1];</div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem2 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer2[<span class="number">4</span>+<span class="number">2</span>*NElem2];</div></pre></td></tr></table></figure>
+<p>我们定义两个buffer(<code>buffer1</code> <code>buffer2</code>)，每个buffer需要从元素数目(<code>NElem1</code> <code>NElem2</code>，读者不用管他们到底代表什么含义)计算buffer的大小，那么封装<code>4+2*NElem</code>呢？C语言可以使用宏，C++03可以使用模板</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">size_t</span> NElem&gt;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cal_buffer_size</span> &#123;</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">size_t</span> value = <span class="number">4</span> + <span class="number">2</span>*NElem; &#125;</div><div class="line"></div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem1 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer1[cal_buffer_size&lt;NElem1&gt;::value];</div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem2 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer2[cal_buffer_size&lt;NElem2&gt;::value];</div></pre></td></tr></table></figure>
+<p>但是使用模板也有缺点那就是，只能适用于常量表达式的情况，对于非常量表达式还要另外写函数。C++11提供了更加强大的常函数。当接受常量表达式时作为参数时，返回值也为常量表达式；当接受变量作为参数时，返回值也为变量；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">constexpr</span> size_t <span class="title">cal_buffer_size</span><span class="params">(<span class="keyword">size_t</span> NElem)</span></span></div><div class="line">&#123; <span class="keyword">return</span> <span class="number">4</span>+<span class="number">2</span>*NElem; &#125;</div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem1 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer1[cal_buffer_size&lt;NElem1&gt;::value];</div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem2 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer2[cal_buffer_size&lt;NElem2&gt;::value];</div><div class="line"><span class="keyword">size_t</span> NElem3  = <span class="number">1</span>;</div><div class="line"><span class="keyword">char</span> *buffer3 = <span class="keyword">new</span> <span class="keyword">char</span>[cal_buffer_size(NElem3)]; <span class="comment">// ok</span></div><div class="line"><span class="keyword">char</span> buffer3[cal_buffer_size(NElem3)]; <span class="comment">// compile error</span></div></pre></td></tr></table></figure>
+<h3 id="constexpr-function的链接性"><a href="#constexpr-function的链接性" class="headerlink" title="constexpr function的链接性"></a>constexpr function的链接性</h3><p>当我们使用常量函数时候，为了保持常量函数求解常量的能力，用到常量函数的每个编译单元必须包含常量函数实现。常量函数是隐式inline的，这样多个编译单元包含同一个常量函数的实现的时候，不会出现连接错误。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// size.h</span></div><div class="line"><span class="function"><span class="keyword">constexpr</span> size_t <span class="title">size</span><span class="params">(<span class="keyword">size_t</span> sz)</span> </span>&#123; <span class="keyword">return</span> sz; &#125;</div><div class="line"></div><div class="line"><span class="comment">// src1.cpp</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"szie.h"</span></span></div><div class="line"><span class="keyword">int</span> x  = <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> xx = size(x); <span class="comment">// inline here</span></div><div class="line"></div><div class="line"><span class="comment">// src2.cpp</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"szie.h"</span></span></div><div class="line"><span class="keyword">int</span> y  = <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> yy = size(y); <span class="comment">// inline here</span></div></pre></td></tr></table></figure>
+<p>注意inline函数默认是external链接性。所以不同翻译的单元对同一constexpr function取地址，结果是相同的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/09/constexpr/" data-id="cjgm7stuy000as0syrfiz5ewc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pass-by" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/08/pass-by/" class="article-date">
+  <time datetime="2017-06-08T12:54:24.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/08/pass-by/">C++11传递参数最佳实践</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="参数是可以快速复制小对象"><a href="#参数是可以快速复制小对象" class="headerlink" title="参数是可以快速复制小对象"></a>参数是可以快速复制小对象</h1><p>如果要传递可以快速复制的小对象，那么传递参数最优化的方式是直接传值，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">sin</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123; ... &#125;</div></pre></td></tr></table></figure></p>
+<p>或者比如，对于iterator<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">template&lt;class InIt1,</div><div class="line">	class InIt2&gt; inline</div><div class="line">	bool equal(InIt1 first1, InIt1 last1,</div><div class="line">		InIt2 first2, InIt2 last2)</div><div class="line">&#123; ... &#125;</div></pre></td></tr></table></figure></p>
+<p>被传递的参数可以通过寄存器传递给子函数，效率很高。</p>
+<p>如果按照引用传递传递参数，并且被调用函数没有被内联，那么被传递的参数必须从寄存器转移到栈上，然后子函数通过指针访问，无疑这样效率没有按值传递高。</p>
+<h1 id="传递参数后，只引用不复制的情况"><a href="#传递参数后，只引用不复制的情况" class="headerlink" title="传递参数后，只引用不复制的情况"></a>传递参数后，只引用不复制的情况</h1><p>除了第一种情况，如果传递参数后，只引用不复制的情况，使用指针或左值引用最佳。例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">starts_with</span><span class="params">(<span class="built_in">string</span> <span class="keyword">const</span> &amp;str, <span class="built_in">string</span> <span class="keyword">const</span> &amp;substr)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(substr.size() &gt; str.size()) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> equal(str.begin(), str.begin() + substr.size(),</div><div class="line">            substr.begin(), substr.end());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="参数只能被移动的情况"><a href="#参数只能被移动的情况" class="headerlink" title="参数只能被移动的情况"></a>参数只能被移动的情况</h1><p>如果参数没有复制构造函数，那么显然还是应该按照右值引用传递。例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Connection</span> &#123;</span></div><div class="line">    Socket fSocket;</div><div class="line">    Connection(Socket &amp;&amp;socket) : fSocket(<span class="built_in">std</span>::move(socket))</div><div class="line">    &#123; ... &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="传递参数后，调用者一定要得到一份独享资源"><a href="#传递参数后，调用者一定要得到一份独享资源" class="headerlink" title="传递参数后，调用者一定要得到一份独享资源"></a>传递参数后，调用者一定要得到一份独享资源</h1><p>举例来说<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> ...)</span> </span>&#123; &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>在调用<code>setName</code>，那么<code>fName</code>一定要得到一份独享的字符串缓存数据。<br>如果参数没有移动构造函数，那么显然还是应该按照引用传递。我只考虑参数有移动构造函数的情况。</p>
+<p>一种直接的设计是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 1</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> <span class="keyword">const</span> &amp;name)</span> </span>&#123; fName = name; &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> &amp;&amp;name)</span> </span>&#123; fName = <span class="built_in">std</span>::move(name); &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这样设计的问题在于重复代码，尤其是当<code>setName</code>逻辑并不简单或者<code>setName</code>接受多个字符串的时候。有点在于，能够最优化的节约计算机资源，编译错误信息也容易理解。</p>
+<p>既然，两个<code>setName</code>做的事情一样，那么何不用模板写<code>setName</code>呢？比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">String</span>&gt;</span></div><div class="line">    <span class="title">void</span> <span class="title">setName</span>(<span class="title">string</span> &amp;&amp;<span class="title">name</span>) &#123; fName = <span class="built_in">std</span>::forward(name); &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这样代码既不重复，也不损失性能，还能支持任何能够赋值给string的类型。这样设计的问题恰恰在于模板，如果<code>setName</code>逻辑并不简单，那么有代码膨胀的风险。并且，由于采用模板接口，编译错误信息也不容易理解。</p>
+<p>一种pass-by-value的写法结合move实际上有最好的trade-off。如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 3</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> name)</span> </span>&#123; fName = <span class="built_in">std</span>::move(name); &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这种做法的思路是，首先将参数复制或移动构造给形参<code>name</code>，然后再将<code>name</code><br>移动构造给<code>fName</code>。比<code>version 1</code>中，直接将参数复制或移动构造给<code>fName</code>，多了一次move。</p>
+<p>实际上有一种特殊情况，pass-by-value和pass-by-rvalue-reference效率是一样的，那就是被传递的参数是某个临时变量，那么临时变量就会和形式参数<code>name</code>合并。也就是说pass-by-value省去了被传递参数到形参的移动构造，但是多了形式参数到<code>fName</code>的移动构造，净的来说pass-by-value和pass-by-rvalue-reference代码效率是一样的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setNameByValue</span><span class="params">(<span class="built_in">string</span> name)</span> </span></div><div class="line">    &#123; fName = <span class="built_in">std</span>::move(name); &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setNameByRValueRef</span><span class="params">(<span class="built_in">string</span> &amp;&amp;name)</span> </span></div><div class="line">    &#123; fName = <span class="built_in">std</span>::move(name); &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">View v;</div><div class="line"><span class="comment">// create the tmp inplace at the parameter of function</span></div><div class="line"><span class="comment">// in the function, the tmp will be move to fName</span></div><div class="line">v.setNameByValue(<span class="built_in">string</span>(<span class="string">"Alice"</span>));</div><div class="line"><span class="comment">// create a tmp at stack, then pass the rvalue ref to the sub function</span></div><div class="line"><span class="comment">// in the function, the tmp will be move to fName</span></div><div class="line">v.setNameByRValueRef(<span class="built_in">string</span>(<span class="string">"Alice"</span>));</div></pre></td></tr></table></figure></p>
+<p>pass-by-value的实现没有使用模板，只有一份<code>setName</code>实现，所以没有代码膨胀的风险，并且编译错误信息也容易理解。性能不会比<code>version 1</code>和<code>version 2</code>差很多。</p>
+<h2 id="pass-by-value-v-s-pass-by-rvalue-ref-基准测试"><a href="#pass-by-value-v-s-pass-by-rvalue-ref-基准测试" class="headerlink" title="pass-by-value v.s. pass-by-rvalue-ref 基准测试"></a>pass-by-value v.s. pass-by-rvalue-ref 基准测试</h2><p>测试程序见<a href="https://gist.github.com/lhprojects/4a9f50da8c5e4ea08cabfa249d0006a0" target="_blank" rel="external">https://gist.github.com/lhprojects/4a9f50da8c5e4ea08cabfa249d0006a0</a><br>四种赋值方式定义如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> test_str[] = <span class="string">"aaaaaaaaaaaaaaa"</span>;</div><div class="line"><span class="comment">// approach 1</span></div><div class="line"><span class="built_in">string</span> name = test_str;</div><div class="line">setNameByValue(<span class="built_in">std</span>::move(name))</div><div class="line"><span class="comment">// approach 2</span></div><div class="line"><span class="built_in">string</span> name = test_str;</div><div class="line">setNameByRValueRef(<span class="built_in">std</span>::move(name))</div><div class="line"><span class="comment">// approach 3</span></div><div class="line">setNameByValue(<span class="built_in">string</span>(test_str))</div><div class="line"><span class="comment">// approach 4</span></div><div class="line">setNameByRValueRef(<span class="built_in">string</span>(test_str))</div></pre></td></tr></table></figure></p>
+<p>测试方式是对上面每种赋值方式循环10,000,000次计时间。测试平台为Visual Studio 2017。</p>
+<p>注意每次调用<code>setName</code>都要产生新的字符串，但是因为<code>test_str</code>不长，<code>string</code>类是短字符串优化的，所以并没有动态内存申请。</p>
+<p>测试结果如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> test_str[] = <span class="string">"aaaaaaaaaaaaaaa"</span>;</div><div class="line"><span class="comment">// approach 1</span></div><div class="line"><span class="comment">// 201,608us</span></div><div class="line"><span class="built_in">string</span> name = test_str;</div><div class="line">setNameByValue(<span class="built_in">std</span>::move(name))</div><div class="line"><span class="comment">// 217,741us</span></div><div class="line"><span class="comment">// approach 2</span></div><div class="line"><span class="built_in">string</span> name = test_str;</div><div class="line">setNameByRValueRef(<span class="built_in">std</span>::move(name))</div><div class="line"><span class="comment">// approach 3</span></div><div class="line"><span class="comment">// 199,719us</span></div><div class="line">setNameByValue(<span class="built_in">string</span>(test_str))</div><div class="line"><span class="comment">// 197,971us</span></div><div class="line"><span class="comment">// approach 4</span></div><div class="line">setNameByRValueRef(<span class="built_in">string</span>(test_str))</div></pre></td></tr></table></figure></p>
+<ul>
+<li>可见第一种，第三种方式和第四种方式确实没有时间差异，这三种赋值方式只有一次移动构造。</li>
+<li>第二种方式时间比其他方式多不到10%，大部分时间都用在了从<code>test_str</code>构造<code>string</code>上，由于短字符串优化，这个时间也是很短的，可见一次移动构造的时间更短。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/08/pass-by/" data-id="cjgm7stv0000cs0syzbnmrjw8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c-best-practice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/08/c-best-practice/" class="article-date">
+  <time datetime="2017-06-08T09:32:55.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/08/c-best-practice/">C++11具名返回值最佳实践</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="In-C-03-Return-by-Value-is-Not-Elegant"><a href="#In-C-03-Return-by-Value-is-Not-Elegant" class="headerlink" title="In C++03 Return by Value is Not Elegant"></a>In C++03 Return by Value is Not Elegant</h1><p>在C++里返回一个有名字的局部变量最直接的方式是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 1</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; get_data() &#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; local_data;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) local_data.push_back(i);</div><div class="line">    <span class="keyword">return</span> local_data;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = get_data();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在性能不重要的场景，这么写还没有什么问题。在性能比较重要的场景，那么些就不合适了。原因在于<code>data = get_data()</code>会导致</p>
+<ul>
+<li>local_data拷贝构造给一个临时变量_tmp。</li>
+<li>local_data析构</li>
+<li>_tmp拷贝构造给data<br>伪代码就是</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; _tmp = get_data.local_data;</div><div class="line">    get_data.local_data.~<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = _tmp;</div><div class="line">    _tmp.~<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>整个返回值过程，需要两次对数组的复制。<br>可以看出，_tmp变量的产生完全是因为C++语法限制。这时候编译器会做临时变量消除。于是一个合格的C++编译器生成的代码应该是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = get_data.local_data;</div><div class="line">    get_data.local_data.~<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>整个返回值过程，还是需要一次对数组的复制。下面的讨论都是假设编译器总会做临时变量消除的。(C++11保证了这一点)<br>为了减少这一次数组复制，这时候就需要开动脑筋了，代码可以这么写</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 2</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; get_data(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;local_data) &#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) local_data.push_back(i);</div><div class="line">    <span class="keyword">return</span> local_data;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data;</div><div class="line">    get_data(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就消除了多余数组复制，但是代码变得不Elegant，因为这样代码不是为了性能优化变形的，<em>代码形式和代码表达意图不一致</em>。</p>
+<h1 id="Move-the-Return-Value-in-C-11"><a href="#Move-the-Return-Value-in-C-11" class="headerlink" title="Move the Return Value in C++11"></a>Move the Return Value in C++11</h1><p>C++11引入了右值引用<code>T&amp;&amp;</code>，这里假定读者已经了解右值引用和移动构造函数了。简单来说右值引用是对<em>临时变量的唯一引用</em>，所以当获得一个右值引用，可以窃取引用的内容</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 3</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; get_data() &#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; local_data;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) local_data.push_back(i);</div><div class="line">     <span class="comment">// *********** NOTE HERE *************</span></div><div class="line">     <span class="comment">// std::move(local_data) has type of std::vector&lt;int&gt; &amp;&amp;</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::move(local_data);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = get_data();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>等效的伪代码是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// invoke move constructor</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data = (<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;&amp;)get_data.local_data;</div><div class="line">    get_data.local_data.~<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();  </div><div class="line">&#125;</div><div class="line"></div><div class="line">tempalte&lt;...&gt;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">vector</span> &#123;</span></div><div class="line">    T * m_ptr;</div><div class="line">    <span class="comment">// move constructor</span></div><div class="line">    <span class="built_in">vector</span>(<span class="built_in">vector</span> &amp;&amp;r) &#123;</div><div class="line">        ...</div><div class="line">        <span class="keyword">delete</span>[] m_ptr;</div><div class="line">        m_ptr = r.m_ptr;</div><div class="line">        r.m_ptr = <span class="literal">NULL</span>;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// copy constructor</span></div><div class="line">    <span class="built_in">vector</span>(<span class="built_in">vector</span> <span class="keyword">const</span> &amp;r) &#123; ... &#125;</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>使用<code>std::move()</code>没有阻止<code>data</code>的构造，但是通过窃取<code>get_data.local_data</code>的数据所有权，使得构造过程不需要复制整个数组。</p>
+<h1 id="NRVO-in-C-03-and-C-11"><a href="#NRVO-in-C-03-and-C-11" class="headerlink" title="NRVO in C++03 and C++11"></a>NRVO in C++03 and C++11</h1><p>移动返回值的方案对于<code>move</code>起来很快的对象比如<code>string</code>，<code>vector</code>已经足够好了。那么有没有更快的方案，答案是有，那就是具名返回值优化（NRVO）。在C++03时代，没有右值引用，如何使得<code>version 1</code>版本的代码运行比较快呢？编译器会自动将<code>version 1</code>转化成类似<code>version 2</code>的版本。伪代码是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// NRVO 伪代码</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; get_data(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;local_data) &#123;</div><div class="line">    <span class="keyword">new</span>(&amp;local_data) <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) local_data.push_back(i);</div><div class="line">    <span class="keyword">return</span> local_data;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span> data_buffer[<span class="keyword">sizeof</span>(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;)];</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;data = data_buffer;</div><div class="line">    get_data(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看出，内存是在主函数申请的，但是初始化是在子函数进行的，子函数返回后不需要销毁临时变量，主函数可以接着用子函数的局部变量。</p>
+<p>类似的优化手段只对子函数的临时变量（那是另外一个问题了，此处略）和子函数的有名字的局部变量有效。此处正是后者的情况，这就是NRVO(Named Return Value Optimization)。需要注意的是<em>NRVO时可选的，编译器可以选择实现，也可以选择不实现</em></p>
+<h1 id="NRVO-or-Move-Return-Value-in-C-11"><a href="#NRVO-or-Move-Return-Value-in-C-11" class="headerlink" title="NRVO or Move Return Value in C++11?"></a>NRVO or Move Return Value in C++11?</h1><p>需要指出的是对于<code>version 3</code>由于，<code>std::move(local_data)</code>不是具名局部变量，也就丧失了，NRVO的机会。</p>
+<p>所以我们到底是应该写<code>return local_data</code>还是<code>return std::move(local_data)</code>，或者说应该写<code>version 1</code>还是<code>version 3</code>？对于后者，一定会发生一次移动构造，虽然代价比较小，但是相比NRVO仍然是不够优化的。对于前者，如果发生NRVO那么效率会很好，如果没有发生，效率会不会很差？C++11规定了，对于<code>return local_data</code>，如果编译器没有实现NRVO，那么必须将<code>return local_data</code>视作<code>return std::move(local_data)</code>。所以在C++11里，前者总是优于后者的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>说的好多，结论是：对于返回具名局部变量的情况，像C++03一样返回值就好的。此时</p>
+<ul>
+<li>如果NRVO发生，那么效率最优化</li>
+<li>如果NRVO没有发生，如果对象有移动构造函数，那么就使用移动构造函数构造上层函数局部对象</li>
+<li>如果NRVO和移动构造都没有发生，如果对象有复制构造函数，那么就使用复制构造函数构造上层函数局部对象</li>
+<li>如果NRVO，移动构造和复制构造都没有发生，编译错误</li>
+</ul>
+<p>天下还是有免费的午餐的，一行C++03代码不用改，只要更新C++编译器和标准库到C++11，就可以自动获得性能提升。</p>
+<p>对于<code>version 2</code>是不是就可以放在历史的垃圾箱里呢？其实并不是，需要分多个函数来填充同一个动态数组时，<code>version 2</code>还是比<code>version 1</code>更加有效和自然，代码举例如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data;</div><div class="line">    push_data_1(data);</div><div class="line">    push_data_2(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/08/c-best-practice/" data-id="cjgm7stux0009s0syfvq7cpge" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-why-xor-need" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/08/why-xor-need/" class="article-date">
+  <time datetime="2017-06-08T08:27:12.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/08/why-xor-need/">为什么需要xor算符？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="如何模拟xor"><a href="#如何模拟xor" class="headerlink" title="如何模拟xor"></a>如何模拟xor</h1><p>只要列真值表就可检验<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a xor b = (a or b) and neg (a and b)</div></pre></td></tr></table></figure></p>
+<p>既然xor可以被模拟，那么比如在C语言中，为什么我们还需要专门的xor算符<code>^</code>呢？当然是因为xor用的比较多，为了效率应有xor算法，以便将这个操作映射成CPU指令！但是，我们还有别的原因，我们下面从一个角度来探求xor必要性。</p>
+<h1 id="xor与二元表示运算符的完备性"><a href="#xor与二元表示运算符的完备性" class="headerlink" title="xor与二元表示运算符的完备性"></a>xor与二元表示运算符的完备性</h1><p>首先我们设想一种二元运算符<code>?</code>，那么<code>?</code>在函数空间又多少可能性呢？答案是<code>16=2^4</code>种，其中4是函数定义域的大小，2表示对于定义域的每个输入都有两种输出。</p>
+<p>如果进一步要求<code>a ? b == b ? a</code>，即要求交换操作数对称性，那么<code>?</code>在函数空间又有多少种可能性呢？因为<code>A == 0 ? 1 == 1 ? 0</code>, <code>B = 0 ? 0 == 0 ? 0</code>,<code>B == 1 ? 1 == 1 ? 1</code>，所以真值表共有三个独立变量。所以答案是<code>8=2^3</code>，2表示对于定义域的每个输入都有两种输出。</p>
+<p>下面进一步要求，<code>a ? b</code>，<code>neg (a ? b)</code>能够表示这八种运算，那么<code>?</code>又至少有多少种可能性呢？换一句话说要求<code>A, B, C</code>和<code>neg A, neg B, neg C</code>能够表示这八种情况，<code>A, B, C</code>至少有多少种取值呢？<br>答案是四种<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">A = 0, B = 0, C = 0</div><div class="line">// A = 1, B = 1, C = 1</div><div class="line">A = 1, B = 0, C = 0</div><div class="line">// A = 0, B = 1, C = 1</div><div class="line">A = 0, B = 0, C = 1</div><div class="line">// A = 1, B = 0, C = 1</div><div class="line">A = 1, B = 0, C = 1</div><div class="line">// A = 0, B = 1, C = 0</div></pre></td></tr></table></figure></p>
+<p>第一种是没有价值的全等于0，第二种就是xor，第三种就是and，第三种就是or。<br><strong><em> 于是借助至多一次neg运算符表示所有对称布尔操作需要xor，and和or三种二元运算符  </em></strong></p>
+<p>如果我们换做要求，<code>a ? b</code>，<code>neg (a ? b)</code>，<code>neg a ? neg b</code>，<code>neg(neg a ? neg b)</code>能够表示这八种运算，那么<code>?</code>又至少有多少种可能性呢？换一句话说要求<code>A, B, C</code>，<code>neg A, neg B, neg C</code>，<code>A, C, B</code>和<code>neg A, neg C, neg B</code>能够表示这八种情况，<code>A, B, C</code>至少有多少种取值呢？<br>答案是三种<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">A = 0, B = 0, C = 0</div><div class="line">// A = 1, B = 1, C = 1</div><div class="line">A = 1, B = 0, C = 0</div><div class="line">// A = 0, B = 1, C = 1</div><div class="line">A = 0, B = 0, C = 1</div><div class="line">// A = 0, B = 1, C = 0</div><div class="line">// A = 1, B = 1, C = 0</div><div class="line">// A = 1, B = 0, C = 1</div></pre></td></tr></table></figure></p>
+<p>第一种是没有价值的全等于0，第二种就是xor，第三种就是and，连我都没想到竟然没有出现or运算。想想<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a or b = neg ((neg a) and (neg b))</div></pre></td></tr></table></figure></p>
+<p>似乎这个结果又很合理。</p>
+<p>(<em> 本人非计算机科班出身，可以保证上文的正确性，但是不保证阐述的深度 </em>)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/08/why-xor-need/" data-id="cjgm7stuz000bs0sypxvc8tii" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Think-like-a-crow-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/06/Think-like-a-crow-3/" class="article-date">
+  <time datetime="2017-06-05T16:43:18.000Z" itemprop="datePublished">2017-06-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/06/Think-like-a-crow-3/">像乌鸦一样思考，旋转的笔帽</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章研究《像乌鸦一样思考》第三话，旋转的笔帽。</p>
+<h1 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h1><h1 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/06/Think-like-a-crow-3/" data-id="cjgm7stuq0007s0sy2as3vyj6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/30/CppAbs/">C++ abs()</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/01/Entropy/">视界问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/Lottery/">博彩</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/11/Integers-In-C/">Integers In C++</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Install-Root-on-Windows/">Install Root on Windows</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Harry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

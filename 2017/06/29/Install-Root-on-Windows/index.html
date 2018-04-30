@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Install Root on Windows | Harry&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="准备 下载root5.3.4-36 没有测试更高版本 安装python2.7 更高版本会导致问题 安装cmake3.2.2 更高版本会导致问题 安装Visual Studio 12 2013 更高版本会导致问题  生成Visual Studio .slncmake -G “Visual Studio 12 2013” path/to/root/source -Droofit=ON-Droofit=">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install Root on Windows">
+<meta property="og:url" content="https://lhprojects.github.io/2017/06/29/Install-Root-on-Windows/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="准备 下载root5.3.4-36 没有测试更高版本 安装python2.7 更高版本会导致问题 安装cmake3.2.2 更高版本会导致问题 安装Visual Studio 12 2013 更高版本会导致问题  生成Visual Studio .slncmake -G “Visual Studio 12 2013” path/to/root/source -Droofit=ON-Droofit=">
+<meta property="og:updated_time" content="2017-06-29T13:27:36.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Install Root on Windows">
+<meta name="twitter:description" content="准备 下载root5.3.4-36 没有测试更高版本 安装python2.7 更高版本会导致问题 安装cmake3.2.2 更高版本会导致问题 安装Visual Studio 12 2013 更高版本会导致问题  生成Visual Studio .slncmake -G “Visual Studio 12 2013” path/to/root/source -Droofit=ON-Droofit=">
+  
+    <link rel="alternate" href="/atom.xml" title="Harry&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harry&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lhprojects.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Install-Root-on-Windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/29/Install-Root-on-Windows/" class="article-date">
+  <time datetime="2017-06-29T11:58:26.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Install Root on Windows
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
+<li>下载root5.3.4-36 没有测试更高版本</li>
+<li>安装python2.7 更高版本会导致问题</li>
+<li>安装cmake3.2.2 更高版本会导致问题</li>
+<li>安装Visual Studio 12 2013 更高版本会导致问题</li>
+</ul>
+<h1 id="生成Visual-Studio-sln"><a href="#生成Visual-Studio-sln" class="headerlink" title="生成Visual Studio .sln"></a>生成Visual Studio .sln</h1><p>cmake -G “Visual Studio 12 2013” path/to/root/source -Droofit=ON<br>-Droofit=ON means the libRooFit will be built</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ul>
+<li>第一次cmake会失败，再试一次就好了</li>
+<li>gunichartables.h 需要保存为utf8-with-signature</li>
+</ul>
+<h1 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h1><p>编译PACAGE项目即可</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/29/Install-Root-on-Windows/" data-id="cjgm7stum0003s0syg7o2fwzn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/11/Integers-In-C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Integers In C++
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/09/constexpr/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++11 constexpr</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/30/CppAbs/">C++ abs()</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/01/Entropy/">视界问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/Lottery/">博彩</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/11/Integers-In-C/">Integers In C++</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Install-Root-on-Windows/">Install Root on Windows</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Harry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

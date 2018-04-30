@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++11传递参数最佳实践 | Harry&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="参数是可以快速复制小对象如果要传递可以快速复制的小对象，那么传递参数最优化的方式是直接传值，例如1double sin(double x) &amp;#123; ... &amp;#125; 或者比如，对于iterator12345template&amp;lt;class InIt1,	class InIt2&amp;gt; inline	bool equal(InIt1 first1, InIt1 last1,		InIt2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11传递参数最佳实践">
+<meta property="og:url" content="https://lhprojects.github.io/2017/06/08/pass-by/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="参数是可以快速复制小对象如果要传递可以快速复制的小对象，那么传递参数最优化的方式是直接传值，例如1double sin(double x) &amp;#123; ... &amp;#125; 或者比如，对于iterator12345template&amp;lt;class InIt1,	class InIt2&amp;gt; inline	bool equal(InIt1 first1, InIt1 last1,		InIt2">
+<meta property="og:updated_time" content="2017-06-08T15:06:18.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++11传递参数最佳实践">
+<meta name="twitter:description" content="参数是可以快速复制小对象如果要传递可以快速复制的小对象，那么传递参数最优化的方式是直接传值，例如1double sin(double x) &amp;#123; ... &amp;#125; 或者比如，对于iterator12345template&amp;lt;class InIt1,	class InIt2&amp;gt; inline	bool equal(InIt1 first1, InIt1 last1,		InIt2">
+  
+    <link rel="alternate" href="/atom.xml" title="Harry&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harry&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lhprojects.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-pass-by" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/08/pass-by/" class="article-date">
+  <time datetime="2017-06-08T12:54:24.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++11传递参数最佳实践
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="参数是可以快速复制小对象"><a href="#参数是可以快速复制小对象" class="headerlink" title="参数是可以快速复制小对象"></a>参数是可以快速复制小对象</h1><p>如果要传递可以快速复制的小对象，那么传递参数最优化的方式是直接传值，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">sin</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123; ... &#125;</div></pre></td></tr></table></figure></p>
+<p>或者比如，对于iterator<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">template&lt;class InIt1,</div><div class="line">	class InIt2&gt; inline</div><div class="line">	bool equal(InIt1 first1, InIt1 last1,</div><div class="line">		InIt2 first2, InIt2 last2)</div><div class="line">&#123; ... &#125;</div></pre></td></tr></table></figure></p>
+<p>被传递的参数可以通过寄存器传递给子函数，效率很高。</p>
+<p>如果按照引用传递传递参数，并且被调用函数没有被内联，那么被传递的参数必须从寄存器转移到栈上，然后子函数通过指针访问，无疑这样效率没有按值传递高。</p>
+<h1 id="传递参数后，只引用不复制的情况"><a href="#传递参数后，只引用不复制的情况" class="headerlink" title="传递参数后，只引用不复制的情况"></a>传递参数后，只引用不复制的情况</h1><p>除了第一种情况，如果传递参数后，只引用不复制的情况，使用指针或左值引用最佳。例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">starts_with</span><span class="params">(<span class="built_in">string</span> <span class="keyword">const</span> &amp;str, <span class="built_in">string</span> <span class="keyword">const</span> &amp;substr)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(substr.size() &gt; str.size()) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> equal(str.begin(), str.begin() + substr.size(),</div><div class="line">            substr.begin(), substr.end());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="参数只能被移动的情况"><a href="#参数只能被移动的情况" class="headerlink" title="参数只能被移动的情况"></a>参数只能被移动的情况</h1><p>如果参数没有复制构造函数，那么显然还是应该按照右值引用传递。例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Connection</span> &#123;</span></div><div class="line">    Socket fSocket;</div><div class="line">    Connection(Socket &amp;&amp;socket) : fSocket(<span class="built_in">std</span>::move(socket))</div><div class="line">    &#123; ... &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="传递参数后，调用者一定要得到一份独享资源"><a href="#传递参数后，调用者一定要得到一份独享资源" class="headerlink" title="传递参数后，调用者一定要得到一份独享资源"></a>传递参数后，调用者一定要得到一份独享资源</h1><p>举例来说<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> ...)</span> </span>&#123; &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>在调用<code>setName</code>，那么<code>fName</code>一定要得到一份独享的字符串缓存数据。<br>如果参数没有移动构造函数，那么显然还是应该按照引用传递。我只考虑参数有移动构造函数的情况。</p>
+<p>一种直接的设计是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 1</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> <span class="keyword">const</span> &amp;name)</span> </span>&#123; fName = name; &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> &amp;&amp;name)</span> </span>&#123; fName = <span class="built_in">std</span>::move(name); &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这样设计的问题在于重复代码，尤其是当<code>setName</code>逻辑并不简单或者<code>setName</code>接受多个字符串的时候。有点在于，能够最优化的节约计算机资源，编译错误信息也容易理解。</p>
+<p>既然，两个<code>setName</code>做的事情一样，那么何不用模板写<code>setName</code>呢？比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">String</span>&gt;</span></div><div class="line">    <span class="title">void</span> <span class="title">setName</span>(<span class="title">string</span> &amp;&amp;<span class="title">name</span>) &#123; fName = <span class="built_in">std</span>::forward(name); &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这样代码既不重复，也不损失性能，还能支持任何能够赋值给string的类型。这样设计的问题恰恰在于模板，如果<code>setName</code>逻辑并不简单，那么有代码膨胀的风险。并且，由于采用模板接口，编译错误信息也不容易理解。</p>
+<p>一种pass-by-value的写法结合move实际上有最好的trade-off。如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 3</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> name)</span> </span>&#123; fName = <span class="built_in">std</span>::move(name); &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这种做法的思路是，首先将参数复制或移动构造给形参<code>name</code>，然后再将<code>name</code><br>移动构造给<code>fName</code>。比<code>version 1</code>中，直接将参数复制或移动构造给<code>fName</code>，多了一次move。</p>
+<p>实际上有一种特殊情况，pass-by-value和pass-by-rvalue-reference效率是一样的，那就是被传递的参数是某个临时变量，那么临时变量就会和形式参数<code>name</code>合并。也就是说pass-by-value省去了被传递参数到形参的移动构造，但是多了形式参数到<code>fName</code>的移动构造，净的来说pass-by-value和pass-by-rvalue-reference代码效率是一样的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// version 2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> &#123;</span></div><div class="line">    <span class="built_in">string</span> fName;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setNameByValue</span><span class="params">(<span class="built_in">string</span> name)</span> </span></div><div class="line">    &#123; fName = <span class="built_in">std</span>::move(name); &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setNameByRValueRef</span><span class="params">(<span class="built_in">string</span> &amp;&amp;name)</span> </span></div><div class="line">    &#123; fName = <span class="built_in">std</span>::move(name); &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">View v;</div><div class="line"><span class="comment">// create the tmp inplace at the parameter of function</span></div><div class="line"><span class="comment">// in the function, the tmp will be move to fName</span></div><div class="line">v.setNameByValue(<span class="built_in">string</span>(<span class="string">"Alice"</span>));</div><div class="line"><span class="comment">// create a tmp at stack, then pass the rvalue ref to the sub function</span></div><div class="line"><span class="comment">// in the function, the tmp will be move to fName</span></div><div class="line">v.setNameByRValueRef(<span class="built_in">string</span>(<span class="string">"Alice"</span>));</div></pre></td></tr></table></figure></p>
+<p>pass-by-value的实现没有使用模板，只有一份<code>setName</code>实现，所以没有代码膨胀的风险，并且编译错误信息也容易理解。性能不会比<code>version 1</code>和<code>version 2</code>差很多。</p>
+<h2 id="pass-by-value-v-s-pass-by-rvalue-ref-基准测试"><a href="#pass-by-value-v-s-pass-by-rvalue-ref-基准测试" class="headerlink" title="pass-by-value v.s. pass-by-rvalue-ref 基准测试"></a>pass-by-value v.s. pass-by-rvalue-ref 基准测试</h2><p>测试程序见<a href="https://gist.github.com/lhprojects/4a9f50da8c5e4ea08cabfa249d0006a0" target="_blank" rel="external">https://gist.github.com/lhprojects/4a9f50da8c5e4ea08cabfa249d0006a0</a><br>四种赋值方式定义如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> test_str[] = <span class="string">"aaaaaaaaaaaaaaa"</span>;</div><div class="line"><span class="comment">// approach 1</span></div><div class="line"><span class="built_in">string</span> name = test_str;</div><div class="line">setNameByValue(<span class="built_in">std</span>::move(name))</div><div class="line"><span class="comment">// approach 2</span></div><div class="line"><span class="built_in">string</span> name = test_str;</div><div class="line">setNameByRValueRef(<span class="built_in">std</span>::move(name))</div><div class="line"><span class="comment">// approach 3</span></div><div class="line">setNameByValue(<span class="built_in">string</span>(test_str))</div><div class="line"><span class="comment">// approach 4</span></div><div class="line">setNameByRValueRef(<span class="built_in">string</span>(test_str))</div></pre></td></tr></table></figure></p>
+<p>测试方式是对上面每种赋值方式循环10,000,000次计时间。测试平台为Visual Studio 2017。</p>
+<p>注意每次调用<code>setName</code>都要产生新的字符串，但是因为<code>test_str</code>不长，<code>string</code>类是短字符串优化的，所以并没有动态内存申请。</p>
+<p>测试结果如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> test_str[] = <span class="string">"aaaaaaaaaaaaaaa"</span>;</div><div class="line"><span class="comment">// approach 1</span></div><div class="line"><span class="comment">// 201,608us</span></div><div class="line"><span class="built_in">string</span> name = test_str;</div><div class="line">setNameByValue(<span class="built_in">std</span>::move(name))</div><div class="line"><span class="comment">// 217,741us</span></div><div class="line"><span class="comment">// approach 2</span></div><div class="line"><span class="built_in">string</span> name = test_str;</div><div class="line">setNameByRValueRef(<span class="built_in">std</span>::move(name))</div><div class="line"><span class="comment">// approach 3</span></div><div class="line"><span class="comment">// 199,719us</span></div><div class="line">setNameByValue(<span class="built_in">string</span>(test_str))</div><div class="line"><span class="comment">// 197,971us</span></div><div class="line"><span class="comment">// approach 4</span></div><div class="line">setNameByRValueRef(<span class="built_in">string</span>(test_str))</div></pre></td></tr></table></figure></p>
+<ul>
+<li>可见第一种，第三种方式和第四种方式确实没有时间差异，这三种赋值方式只有一次移动构造。</li>
+<li>第二种方式时间比其他方式多不到10%，大部分时间都用在了从<code>test_str</code>构造<code>string</code>上，由于短字符串优化，这个时间也是很短的，可见一次移动构造的时间更短。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/08/pass-by/" data-id="cjgm7stv0000cs0syzbnmrjw8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/09/constexpr/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++11 constexpr
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/08/c-best-practice/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++11具名返回值最佳实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/30/CppAbs/">C++ abs()</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/01/Entropy/">视界问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/Lottery/">博彩</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/11/Integers-In-C/">Integers In C++</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Install-Root-on-Windows/">Install Root on Windows</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Harry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

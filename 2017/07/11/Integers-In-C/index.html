@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Integers In C++ | Harry&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C++整数丰富多彩（繁杂无比），整数系统本来是初学阶段首先应该学习的，但是温故而知新（不踩旧坑就不错了），所以来复习一下C++中的整数系统。 整数C++中整数包括（他们最短的名字）分别是123456int, unsigned,short, unsigned short,unsigned char, signed char,char, char16_t, char32_t,long, unsigne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Integers In C++">
+<meta property="og:url" content="https://lhprojects.github.io/2017/07/11/Integers-In-C/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="C++整数丰富多彩（繁杂无比），整数系统本来是初学阶段首先应该学习的，但是温故而知新（不踩旧坑就不错了），所以来复习一下C++中的整数系统。 整数C++中整数包括（他们最短的名字）分别是123456int, unsigned,short, unsigned short,unsigned char, signed char,char, char16_t, char32_t,long, unsigne">
+<meta property="og:updated_time" content="2017-07-11T15:12:39.808Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Integers In C++">
+<meta name="twitter:description" content="C++整数丰富多彩（繁杂无比），整数系统本来是初学阶段首先应该学习的，但是温故而知新（不踩旧坑就不错了），所以来复习一下C++中的整数系统。 整数C++中整数包括（他们最短的名字）分别是123456int, unsigned,short, unsigned short,unsigned char, signed char,char, char16_t, char32_t,long, unsigne">
+  
+    <link rel="alternate" href="/atom.xml" title="Harry&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harry&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lhprojects.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Integers-In-C" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/11/Integers-In-C/" class="article-date">
+  <time datetime="2017-07-11T06:05:53.000Z" itemprop="datePublished">2017-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Integers In C++
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C++整数丰富多彩（繁杂无比），整数系统本来是初学阶段首先应该学习的，但是温故而知新（不踩旧坑就不错了），所以来复习一下C++中的整数系统。</p>
+<h1 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h1><p>C++中整数包括（他们最短的名字）分别是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>, <span class="keyword">unsigned</span>,</div><div class="line"><span class="keyword">short</span>, <span class="keyword">unsigned</span> <span class="keyword">short</span>,</div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span>, <span class="keyword">signed</span> <span class="keyword">char</span>,</div><div class="line"><span class="keyword">char</span>, <span class="keyword">char16_t</span>, <span class="keyword">char32_t</span>,</div><div class="line"><span class="keyword">long</span>, <span class="keyword">unsigned</span> <span class="keyword">long</span>,</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">unsigned</span> <span class="keyword">long</span></div></pre></td></tr></table></figure></p>
+<p>C++整数系统的复杂性源于设计之初就语焉不详，为了在不同平台上达到最佳性能，没有规定每一种整数的长度。以现在的眼光看来当然是得不偿失，可移植的代码本来就不好写，可移植的性能更是难上加难。所以后来设计的语言中每种整数类型都是固定长度。当然固定整数长度也有缺陷，比如几乎所有语言中都有一种叫做<code>int</code>的类型，他是典型的整数长度，应该足够长，性能足够好，那么现在就有一个问题，应该将<code>int</code>定位32位还是64位？或许根据平台浮动的定义才是最好的。</p>
+<h2 id="char"><a href="#char" class="headerlink" title="char"></a><code>char</code></h2><p>C语言之初，<code>char</code>没有确定是有符号的还是无符号的（坑爹）。C++后来补了<code>signed char</code>和<code>unsigned char</code>两种类型，他们的符号性是确定。注意他们的是跟<code>char</code>不同的类型。<br>（如果曾经在标准中一件事情是没有具体规范的，那么后来标准一般不会补充具体规范，因为大家的代码难免会用到某一平台的具体规范，所以C++委员会再也不会规定<code>char</code>的符号性了）。</p>
+<p>后来C++又添加了两种整数类型<code>char16_t</code>和<code>char32_t</code>，他们是无符号的整数。（委员会这回总算学聪明了。）</p>
+<h2 id="size-t"><a href="#size-t" class="headerlink" title="size_t"></a>size_t</h2><p>C++在std名字空间有无符号整数类型<code>size_t</code>。（为了兼容C，所以在全局名字空间肯定也有<code>size_t</code>）。<code>size_t</code>不是基础整数类型。<code>size_t</code>用于表示储存大小，例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sizeof</span>(some_type) -&gt; <span class="keyword">size_t</span></div><div class="line"><span class="keyword">alignof</span>(some_type) -&gt; <span class="keyword">size_t</span></div><div class="line">offsetof(some_type, member_data) -&gt; <span class="keyword">size_t</span></div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line"><span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line"><span class="built_in">malloc</span>(n);</div><div class="line"><span class="built_in">memcpy</span>(dst, src, n);</div></pre></td></tr></table></figure></p>
+<p><code>size_t</code>用于循环和数组下标，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; <span class="built_in">std</span>::size(arr); ++i) &#123;</div><div class="line">    arr[i] = <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>尽管标准没有规定，但是各种标准库容器通常也使用<code>size_t</code>表示各种大小<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;...&gt;::size_type <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;...&gt;::size();</div><div class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;...&gt;::size_type == <span class="keyword">size_t</span></div></pre></td></tr></table></figure></p>
+<p>在实际使用中完全可以把他们当作同一类型，这样就简化了程序写法。（不过两种是不同的类型，那么首先通常不会导致任何错误，其次算这个标准库的作者很奇葩）</p>
+<p><code>size_t</code>具体对应那一基本整数类型并不知道，所以你就不知道<code>size_t</code>的长度，最大值，最小值（其实并不！虽然没有规定，但是它一定和指针一样长）,但是生活还要继续，对基本整数的服务都要迁移过来。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//C版本</span></div><div class="line">&lt;limits.h&gt;</div><div class="line">SIZE_MAX <span class="comment">//最大整数值</span></div><div class="line"></div><div class="line"><span class="comment">//泛型版本</span></div><div class="line">&lt;climits&gt;</div><div class="line"><span class="built_in">std</span>::limit_traits&lt;<span class="keyword">size_t</span>&gt;::...</div></pre></td></tr></table></figure>
+<h1 id="整数提升"><a href="#整数提升" class="headerlink" title="整数提升"></a>整数提升</h1><p>这里我们假设<code>sizeof(char)==1 &amp;&amp; sizeof(short)==2 &amp;&amp; sizeof(int)&gt;=4</code>。首先<code>signed char</code>，<code>signed short</code>，<code>unsigned char</code>，<code>unsigned short</code>，<code>char</code>, <code>char16_t</code>会被提升为<code>int</code>。如果<code>int</code>是4 bytes，那么<code>char32_t</code>会被提升为<code>unsigned</code>；如果<code>int</code>是8 bytes那么<code>char32_t</code>会被提升为<code>int</code>。如果要对char32_t进行比较</p>
+<h1 id="有符号和无符号"><a href="#有符号和无符号" class="headerlink" title="有符号和无符号"></a>有符号和无符号</h1><p>有符号和无符号有什么不同？粗粗一想有符号和无符号有天壤之别，但是两者实际相似之处远超过直觉。首先我们知道有符号的负数是按照补码储存在内存中的，即<code>-1 -&gt; 2^n - 1  -&gt; 0xFFFFFFFE</code>。我们看看负号作用在有符号和无符号整数上的结果<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">-1u</span> -&gt; [<span class="number">-1</span>] -&gt; [<span class="number">2</span>^n - <span class="number">1</span>] -&gt; <span class="number">0xFFFFFFFE</span></div><div class="line"><span class="number">-1</span>  -&gt;  <span class="number">2</span>^n - <span class="number">1</span> -&gt; <span class="number">0xFFFFFFFE</span></div></pre></td></tr></table></figure></p>
+<p>我们知道<code>1u</code>和<code>1</code>的内存布局是一样的，结果的二进制表示也是一样的。有符号和无符号的<code>负号</code>对二进制做了相同的操作。我们再看看有符号的和无符号的加法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> + <span class="number">-2</span> = <span class="number">-1</span> = <span class="number">2</span>^n - <span class="number">1</span> = <span class="number">0xFFFFFFFE</span></div><div class="line"><span class="number">1u</span> + (<span class="number">-2u</span>) = [<span class="number">1</span> + (<span class="number">2</span>^n - <span class="number">2</span>)] = [<span class="number">2</span>^n - <span class="number">1</span>] = <span class="number">2</span>^n <span class="number">-1</span> = <span class="number">0xFFFFFFFE</span></div></pre></td></tr></table></figure></p>
+<p>我们知道<code>-2</code>和<code>(-2u)</code>的内存布局是一样的，结果的二进制表示也是一样的。有符号和无符号的<code>加法</code>对二进制做了相同的操作。实际上对于减法和乘法这个结论也成立。这个结果很重要，这表示如果把在做四则运算的时候，我们把有符号的负数“错误”的转换成无符号的整数，结果还是符合直觉的，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2U</span> + (<span class="keyword">unsigned</span>)(<span class="number">-1</span>) = <span class="number">2u</span> + <span class="number">-1u</span> = <span class="number">2</span> - <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<h1 id="算数运算"><a href="#算数运算" class="headerlink" title="算数运算"></a>算数运算</h1><ul>
+<li>如果其中一个操作子为<code>long double</code>，那么两个操作子都转换为<code>long double</code>。<code>(unsigned) long long</code>转换为<code>long double</code>的时候可能会丢失精度。</li>
+<li>否则，如果其中一个操作子为<code>double</code>，那么两个操作子都转换为<code>double</code>。unsigned or signed 8 bytes integer转换为<code>double</code>的时候可能会丢失精度。</li>
+<li><p>否则，如果其中一个操作子为<code>float</code>，那么两个操作子都转换为<code>float</code>。unsigned or signed 4 or 8 bytes integer转换为<code>float</code>的时候可能会丢失精度。</p>
+</li>
+<li><p>对于两个整数的情形</p>
+<ul>
+<li>如果两个操作子的符号相同，那么低等级的应当转换为高等级的</li>
+<li>否则，如果无符号的操作子的等级不低于有符号的操作子，那么有符号的整数应当转换为无符号的。</li>
+<li>否则，（有符号的操作子的等级高于无符号的操作子）如果有符号的长度比无符号的要长，那么无符号的应当转换为有符号的。</li>
+<li>否则，（有符号的操作子的等级高于无符号的操作子）两者都转换成有符号的操作子的无符号版本。</li>
+</ul>
+</li>
+</ul>
+<p>对于整数的第二种情况：<br>如果有符号的整数为整数，那么结果显然是符合直觉的。如果有符号的整数为负数，那么负数就会带符号拓展位，然后和另外一个操作子运算，结果通常也是符合只直觉的。例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">1u</span> - (<span class="keyword">signed</span> <span class="keyword">char</span>)(<span class="number">-1</span>) <span class="comment">// = 1u - (signed)1 = [1 - (2^n - 1)] = [2 - 2^n] = 2</span></div></pre></td></tr></table></figure></p>
+<p>对于整数的第四种情况类似。</p>
+<p>另外对于所有情况，都没有实现定义的情况出现，于是只要每种整数的长度确定，那么结果就和编译选项无关。</p>
+<h1 id="固定长度整数"><a href="#固定长度整数" class="headerlink" title="固定长度整数"></a>固定长度整数</h1><p>C++的整数系统都是围绕基本整数类型转的，那么如果在程序中混合使用<code>int32_t</code>, <code>int64_t</code>, <code>uint32_t</code>, <code>uint64_t</code>, <code>size_t</code>, <code>int</code>结果会怎样？对于加减乘法，一般情况都不会出现问题，结果都会符合直觉，不过还是要特别注意，结果可能是有符号类型也可能是无符号类型，但是如果将结果赋值给一个确定的类型变量，那么一切都会尘埃落定得到你想要的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// size_t == uint32_t</span></div><div class="line"><span class="keyword">int64_t</span> offset = <span class="number">-1</span>;</div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line">n = n - offset; <span class="comment">// = uint32_t((int64_t)n - offset) = 2</span></div><div class="line"></div><div class="line"><span class="comment">// size_t == uint64_t</span></div><div class="line"><span class="keyword">int64_t</span> offset = <span class="number">-1</span>;</div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line">n = n - offset; <span class="comment">// = n - (uint64_t)offset = 2</span></div></pre></td></tr></table></figure>
+<p>但是对于除法就要特别小心，因为将负数转换为负数，通常会带来问题。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// size_t == uint32_t</span></div><div class="line"><span class="keyword">int64_t</span> by = <span class="number">-1</span>;</div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line">n = n / by; <span class="comment">// = 4294967295</span></div><div class="line"></div><div class="line"><span class="comment">// size_t == uint64_t</span></div><div class="line"><span class="keyword">int64_t</span> by = <span class="number">-1</span>;</div><div class="line"><span class="keyword">size_t</span> n = <span class="number">1</span>;</div><div class="line">n = n / by; <span class="comment">// = 0</span></div></pre></td></tr></table></figure></p>
+<p>实践上首先应该将操作子转换为相同符号的整型。</p>
+<h1 id="整数字面值"><a href="#整数字面值" class="headerlink" title="整数字面值"></a>整数字面值</h1><p>整数字面值都是非负数。字面值依然可能（默认是）是有符号的类型。</p>
+<h2 id="十进制字面值"><a href="#十进制字面值" class="headerlink" title="十进制字面值"></a>十进制字面值</h2><p>如果没有指定符号性，那么会从<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> -&gt; <span class="keyword">long</span> -&gt; <span class="keyword">long</span> <span class="keyword">long</span></div></pre></td></tr></table></figure></p>
+<p>中选择一个。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> <span class="comment">// int</span></div><div class="line"><span class="number">1500000000000</span> <span class="comment">// long or long long (first 8bytes signed integer)</span></div><div class="line"><span class="number">15000000000000000000</span> <span class="comment">// error (or warning) cann't fit in 8bytes signed integer</span></div><div class="line">                     <span class="comment">// note: in C99, if the integer can't fit in long</span></div><div class="line">                     <span class="comment">// the compiler will try unsigned long</span></div><div class="line">                     <span class="comment">// VC++ and g++ behave similarly as C99 sometimes</span></div></pre></td></tr></table></figure></p>
+<p>如果指定为无符号的整数，那么只能从无符号整数中选择一个。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> -&gt; <span class="keyword">unsigned</span> <span class="keyword">long</span> -&gt; <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span></div></pre></td></tr></table></figure></p>
+<p>可以指定最小长度。例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">1L</span> <span class="comment">// long</span></div><div class="line"><span class="number">1500000000000L</span> <span class="comment">// long or long long (first 8bytes signed integer)</span></div></pre></td></tr></table></figure></p>
+<p>一般请使用大写L，以防止某些不好的字体无法区分<code>1</code>和<code>l</code>。</p>
+<h2 id="二进制，八进制和十六进制"><a href="#二进制，八进制和十六进制" class="headerlink" title="二进制，八进制和十六进制"></a>二进制，八进制和十六进制</h2><p>与十进制的情形相同，只是在没有指明符号性的情况下，会首先尝试有符号，然后尝试无符号的，实在不行就增加长度。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0xf</span> <span class="comment">// int</span></div><div class="line"><span class="number">0xffffffff</span> <span class="comment">// unsigned</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/07/11/Integers-In-C/" data-id="cjgm7stum0004s0syfwhf3b40" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/09/Lottery/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          博彩
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/29/Install-Root-on-Windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Install Root on Windows</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/30/CppAbs/">C++ abs()</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/01/Entropy/">视界问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/Lottery/">博彩</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/11/Integers-In-C/">Integers In C++</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Install-Root-on-Windows/">Install Root on Windows</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Harry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

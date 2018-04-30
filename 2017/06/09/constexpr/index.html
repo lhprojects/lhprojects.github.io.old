@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++11 constexpr | Harry&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C++03中的常量表达式C++03中就已经有常量表达式了，比如123// len is constant expressionint const len = 3;int arr[len]; C++03中const关键字扮演着多种角色123456789// a is varibleint a = 1;// b is a constant variableint const b = a;int arr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++11 constexpr">
+<meta property="og:url" content="https://lhprojects.github.io/2017/06/09/constexpr/index.html">
+<meta property="og:site_name" content="Harry&#39;s Blog">
+<meta property="og:description" content="C++03中的常量表达式C++03中就已经有常量表达式了，比如123// len is constant expressionint const len = 3;int arr[len]; C++03中const关键字扮演着多种角色123456789// a is varibleint a = 1;// b is a constant variableint const b = a;int arr">
+<meta property="og:updated_time" content="2017-06-09T09:40:03.262Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++11 constexpr">
+<meta name="twitter:description" content="C++03中的常量表达式C++03中就已经有常量表达式了，比如123// len is constant expressionint const len = 3;int arr[len]; C++03中const关键字扮演着多种角色123456789// a is varibleint a = 1;// b is a constant variableint const b = a;int arr">
+  
+    <link rel="alternate" href="/atom.xml" title="Harry&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Harry&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://lhprojects.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-constexpr" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/09/constexpr/" class="article-date">
+  <time datetime="2017-06-08T17:29:53.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++11 constexpr
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="C-03中的常量表达式"><a href="#C-03中的常量表达式" class="headerlink" title="C++03中的常量表达式"></a>C++03中的常量表达式</h1><p>C++03中就已经有常量表达式了，比如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// len is constant expression</span></div><div class="line"><span class="keyword">int</span> <span class="keyword">const</span> len = <span class="number">3</span>;</div><div class="line"><span class="keyword">int</span> arr[len];</div></pre></td></tr></table></figure></p>
+<p>C++03中<code>const</code>关键字扮演着多种角色<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a is varible</span></div><div class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</div><div class="line"><span class="comment">// b is a constant variable</span></div><div class="line"><span class="keyword">int</span> <span class="keyword">const</span> b = a;</div><div class="line"><span class="keyword">int</span> arr1[b]; <span class="comment">// compile error</span></div><div class="line">             <span class="comment">// b is not constant expression</span></div><div class="line"><span class="comment">// b is a constsnt expression</span></div><div class="line"><span class="keyword">int</span> <span class="keyword">const</span> c = <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> arr2[c]; <span class="comment">// ok</span></div></pre></td></tr></table></figure></p>
+<p>可见<code>const</code>关键字可以定义不可更改变量，也可以定义常量表达式，当对不可更改变量的定义满足一定条件时候，不可更改变量自动提升为常量表达式。</p>
+<p>常量表达式的优势</p>
+<ul>
+<li>常量表达式在编译期求值<ul>
+<li>常量表达式可以用于静态长度数组的长度</li>
+<li>常量表达式可以用于模板参数</li>
+<li>常量表达式可以用于<code>switch</code>的<code>case</code>label</li>
+</ul>
+</li>
+<li>常量表达式是编译期概念，所以可以定义在头文件</li>
+<li>常量表达式没有初始化顺序问题</li>
+</ul>
+<h2 id="lackage"><a href="#lackage" class="headerlink" title="lackage"></a>lackage</h2><p>C++03中，不可变变量默认具有static的链接性，例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// str.h</span></div><div class="line"><span class="built_in">string</span> <span class="keyword">const</span> str;</div><div class="line"></div><div class="line"><span class="comment">// non-const-str.h</span></div><div class="line"><span class="built_in">string</span> non_const_str;</div><div class="line"></div><div class="line"><span class="comment">// src1.cpp</span></div><div class="line"><span class="meta">#inlcude <span class="meta-string">"str.h"</span> <span class="comment">// ok</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"non-const-str.h"</span> <span class="comment">// 链接性 error</span></span></div><div class="line"></div><div class="line"><span class="comment">// src2.cpp</span></div><div class="line"><span class="meta">#inlcude <span class="meta-string">"str.h"</span>  <span class="comment">// ok</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"non-const-str.h"</span> <span class="comment">// 链接性 error</span></span></div></pre></td></tr></table></figure></p>
+<p>虽然让<code>len</code>具有static的链接性解决了<code>len</code>在不同翻译单元重复定义的问题，是一种简便的解决方案。但是这导致每个翻译单元都一份<code>len</code>的拷贝，同时也破坏了<code>const</code>和<code>static</code>的正交性，实则不是一种优雅的解决方案。</p>
+<h1 id="C-11中的常量表达式"><a href="#C-11中的常量表达式" class="headerlink" title="C++11中的常量表达式"></a>C++11中的常量表达式</h1><h2 id="constexpr-varible"><a href="#constexpr-varible" class="headerlink" title="constexpr varible"></a>constexpr varible</h2><p>C++11中可以使用<code>constexpr</code>定义<code>constexpr variable</code>,<code>constexpr variable</code>是一种常量表达式<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> a = <span class="number">1</span>; <span class="comment">// a is constant expression</span></div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> b = <span class="built_in">strlen</span>(<span class="string">"abc"</span>); <span class="comment">// compile error</span></div><div class="line">                                 <span class="comment">// strlen("abc") is not constant expression</span></div></pre></td></tr></table></figure></p>
+<p>可见<code>constexpr</code>相比<code>const</code>可以保证被定义的对象一定是常量表达式。<strong>如果意图定义常量表达式，那么就使用<code>constexpr</code></strong> 这样可以避免编译错误传播。如果意图定义不可更改变量，那么就使用<code>const</code>，可以不管被定义的对象被是否提升为常量表达式。</p>
+<p><code>const</code>只支持定义整数，枚举和指针类型的常量表达式。<code>constexpr</code>除了可以定义build-in类型的常量表达式，还可以定义任何literal-type类型的常量表达式。</p>
+<h3 id="constexpr-variable-储存期和连接性"><a href="#constexpr-variable-储存期和连接性" class="headerlink" title="constexpr variable 储存期和连接性"></a>constexpr variable 储存期和连接性</h3><h4 id="名字空间作用域的常量表达式"><a href="#名字空间作用域的常量表达式" class="headerlink" title="名字空间作用域的常量表达式"></a>名字空间作用域的常量表达式</h4><p>我们知道名字空间作用域的常量表达式都是static链接性，如果不对常量表达式取地址，那么连接性其实没有什么影响。但是一旦对常量表达式取地址，那么这个翻译单元，就必须为常量表达式分配内存空间。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> arr[x]; <span class="comment">// same as int arr[1]</span></div><div class="line">    <span class="keyword">int</span> <span class="keyword">const</span> *p = x; <span class="comment">// we have to assign memory place for x now</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这是一个轻微的缺点。</p>
+<h4 id="类作用域的常量表达式"><a href="#类作用域的常量表达式" class="headerlink" title="类作用域的常量表达式"></a>类作用域的常量表达式</h4><p>我们知道类作用域的常量表达式都是external链接性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Class.h</span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Class</span> &#123;</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> N = <span class="number">1</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Class.cpp</span></div><div class="line"><span class="comment">// you can't pass linking without this definiton with g++</span></div><div class="line"><span class="comment">// But it's ok with Visual Studio, Visual Studio did some magic for us</span></div><div class="line"><span class="comment">// and this will be allowed in C++17, but it's not part of this article</span></div><div class="line">cosntexpr Class::N;</div></pre></td></tr></table></figure>
+<p>Class::N既可以当做编译期常量使用，又有external链接性，可以说是名字空间作用域常量表达式的补充。注意这里initializer和变量定义是分开的，破坏了在变量定义位置初始化的惯例，但是语言设计只能如此。</p>
+<h2 id="constexpr-function"><a href="#constexpr-function" class="headerlink" title="constexpr function"></a>constexpr function</h2><p>还可以使用<code>constexpr</code>定义常量函数，如果不适用常量函数，那么可能代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem1 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer1[<span class="number">4</span>+<span class="number">2</span>*NElem1];</div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem2 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer2[<span class="number">4</span>+<span class="number">2</span>*NElem2];</div></pre></td></tr></table></figure>
+<p>我们定义两个buffer(<code>buffer1</code> <code>buffer2</code>)，每个buffer需要从元素数目(<code>NElem1</code> <code>NElem2</code>，读者不用管他们到底代表什么含义)计算buffer的大小，那么封装<code>4+2*NElem</code>呢？C语言可以使用宏，C++03可以使用模板</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">size_t</span> NElem&gt;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cal_buffer_size</span> &#123;</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">size_t</span> value = <span class="number">4</span> + <span class="number">2</span>*NElem; &#125;</div><div class="line"></div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem1 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer1[cal_buffer_size&lt;NElem1&gt;::value];</div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem2 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer2[cal_buffer_size&lt;NElem2&gt;::value];</div></pre></td></tr></table></figure>
+<p>但是使用模板也有缺点那就是，只能适用于常量表达式的情况，对于非常量表达式还要另外写函数。C++11提供了更加强大的常函数。当接受常量表达式时作为参数时，返回值也为常量表达式；当接受变量作为参数时，返回值也为变量；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">constexpr</span> size_t <span class="title">cal_buffer_size</span><span class="params">(<span class="keyword">size_t</span> NElem)</span></span></div><div class="line">&#123; <span class="keyword">return</span> <span class="number">4</span>+<span class="number">2</span>*NElem; &#125;</div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem1 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer1[cal_buffer_size&lt;NElem1&gt;::value];</div><div class="line"><span class="keyword">constexpr</span> <span class="keyword">size_t</span> NElem2 = <span class="number">4</span>;</div><div class="line"><span class="keyword">char</span> buffer2[cal_buffer_size&lt;NElem2&gt;::value];</div><div class="line"><span class="keyword">size_t</span> NElem3  = <span class="number">1</span>;</div><div class="line"><span class="keyword">char</span> *buffer3 = <span class="keyword">new</span> <span class="keyword">char</span>[cal_buffer_size(NElem3)]; <span class="comment">// ok</span></div><div class="line"><span class="keyword">char</span> buffer3[cal_buffer_size(NElem3)]; <span class="comment">// compile error</span></div></pre></td></tr></table></figure>
+<h3 id="constexpr-function的链接性"><a href="#constexpr-function的链接性" class="headerlink" title="constexpr function的链接性"></a>constexpr function的链接性</h3><p>当我们使用常量函数时候，为了保持常量函数求解常量的能力，用到常量函数的每个编译单元必须包含常量函数实现。常量函数是隐式inline的，这样多个编译单元包含同一个常量函数的实现的时候，不会出现连接错误。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// size.h</span></div><div class="line"><span class="function"><span class="keyword">constexpr</span> size_t <span class="title">size</span><span class="params">(<span class="keyword">size_t</span> sz)</span> </span>&#123; <span class="keyword">return</span> sz; &#125;</div><div class="line"></div><div class="line"><span class="comment">// src1.cpp</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"szie.h"</span></span></div><div class="line"><span class="keyword">int</span> x  = <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> xx = size(x); <span class="comment">// inline here</span></div><div class="line"></div><div class="line"><span class="comment">// src2.cpp</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"szie.h"</span></span></div><div class="line"><span class="keyword">int</span> y  = <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> yy = size(y); <span class="comment">// inline here</span></div></pre></td></tr></table></figure>
+<p>注意inline函数默认是external链接性。所以不同翻译的单元对同一constexpr function取地址，结果是相同的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lhprojects.github.io/2017/06/09/constexpr/" data-id="cjgm7stuy000as0syrfiz5ewc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/29/Install-Root-on-Windows/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Install Root on Windows
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/08/pass-by/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++11传递参数最佳实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/30/CppAbs/">C++ abs()</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/01/Entropy/">视界问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/09/Lottery/">博彩</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/11/Integers-In-C/">Integers In C++</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/29/Install-Root-on-Windows/">Install Root on Windows</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Harry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
